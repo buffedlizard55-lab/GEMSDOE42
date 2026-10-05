@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Irregularities — GEMSDOE42</title>
+<style>
+:root{--ink:#1a1a1a;--mut:#5a5a5a;--bg:#fff;--line:#dfe6ef}
+*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
+nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
+nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}th{background:#eef2f7}
+code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:12.5px}
+.mut{color:var(--mut)}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+</div></nav>
+<div class="wrap">
+<h1>Irregularity &amp; observation register</h1>
+<p class="mut">Flagged for review per the standing prompt. IR = irregularity (data/method concern). OB = observation (notable but expected). DEV = preregistration deviation.</p>
+<table>
+<tr><th>id</th><th>finding</th><th>disposition</th></tr>
+<tr><td>IR-42-SCORE-01</td><td>No organiser receipt links any group's file bytes to any reported score (0.2778 etc.). All group numbers are owner <b>claims</b> from submission screens.</td><td>Open by design: claims are labelled claims everywhere; our file is UNSCORED until the portal scores it.</td></tr>
+<tr><td>IR-42-PROXY-01</td><td>The blocked holdout's catalogue truth cannot reward a genuinely new fault — the population the test set is drawn from.</td><td>Mitigated: PRIMARY instrument is off-catalogue SGMC faults (mapped but uncatalogued); documented in research §5.</td></tr>
+<tr><td>IR-42-SAMPLE-01</td><td>The sample submission's page wording says “total fault absence” but its bytes contain 60,988 pixels equal to 1 on the labelled faults (verified in this checkout).</td><td>Noted: sample used ONLY as grid/footprint template; the wording discrepancy is the competition's, not ours.</td></tr>
+<tr><td>IR-42-GRID-01</td><td>Footprint from sample (5,167,373) vs finite band-1 pixels (5,165,852): 1,521 px differ; 3,061 in-footprint cells carry the −3.4e38 sentinel in magnetic bands.</td><td>Handled: sample footprint is authoritative; bands median-filled before FFT; audit asserts zero sentinel in output.</td></tr>
+<tr><td>IR-42-RANDOM-01</td><td>Uniform-random control beats concentrated arms on dense SGMC truth in NE/SE folds.</td><td>Explained as an instrument property (dense truth favours spread); hidden set is ~5× sparser. Reported, not hidden. See research §5.</td></tr>
+<tr><td>IR-42-LEAD-01</td><td>Standing prompt names 0.3195 as “highest right now”; the verified 2026-10-05 read is #1 nchuzhoy 0.3262. Leaderboard moves.</td><td>Corrected: all gap math uses the verified 0.3262 read.</td></tr>
+<tr><td>OB-42-01</td><td>NW quadrant holds 59% of primary dots vs 47% of footprint (enrichment 1.25×).</td><td>Plausible (NW holds ~48% of catalogue faults and the densest structure); rim-dot fraction 3% rules out edge-artifact dominance. Watch item for the next slot.</td></tr>
+<tr><td>OB-42-02</td><td>Gravity worms are ~6× fewer than RTP worms (6,097 vs 39,223 surviving ≥1 step): the isostatic anomaly is long-wavelength-smooth with few gradient maxima.</td><td>Expected physics; fusion sums layers so magnetic-only faults are preserved. No action.</td></tr>
+<tr><td>OB-42-03</td><td>Primary pool (30,363) is smaller than the 37–44K operating points of the dotted family — the method emits less mass at (predictably) higher credit density.</td><td>By design (dual corroboration is strict); budget sweep rises monotonically to 30K, so no cut indicated. Watch item: portal feedback decides.</td></tr>
+<tr><td>DEV-H42-1</td><td>Holdout preregistration draft named 40K matched mass; actual candidate pool is 30,363, so matched mass is 30K.</td><td>Logged in <code>scripts/validate_holdout.py</code> header before results were read; no contrast can be won by mass.</td></tr>
+</table>
+<footer>GEMSDOE42 · <a href="index.html">front page</a> · <a href="sources.html">sources</a></footer>
+</div>
+</body>
+</html>

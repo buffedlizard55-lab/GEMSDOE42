@@ -1,0 +1,17 @@
+# GEMSDOE42 data: competition + derived rasters are restored via git mirrors, never committed.
+# See scripts/restore_data.sh for the byte-pinned restore path.
+data/bridge/training_features.tif
+data/bridge/*.tif
+data/external/*
+!data/external/*.md
+!data/bridge/*.md
+# Large local work products
+work/
+*.npy
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# OS
+.DS_Store

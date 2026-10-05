@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candidate hypotheses, ranked — GEMSDOE42</title>
+<style>
+:root{--ink:#1a1a1a;--mut:#5a5a5a;--acc:#0b5cad;--bg:#fff;--card:#f4f7fb;--line:#dfe6ef}
+*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px}
+nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
+nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
+code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}th{background:#eef2f7}
+.mut{color:var(--mut)}.small{font-size:13px}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 8px;margin-right:6px}
+.ship{background:#dff3e3}.queue{background:#e8eefb}.mut2{color:var(--mut)}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+</div></nav>
+<div class="wrap">
+<h1>Candidate hypotheses, ranked by expected DTI per unit cost</h1>
+<p class="mut">Rule: nothing touches a submission slot without beating the holdout best on the preregistered PRIMARY instrument (off-catalogue SGMC, matched mass). H42-1 passed and is the shipped primary. H42-2…H42-5 are queued, each with layers, signature, off-catalogue rationale, novelty statement, and data status.</p>
+
+<table>
+<tr><th>#</th><th>hypothesis</th><th>layers</th><th>physical signature</th><th>why off-catalogue</th><th>novelty vs this repo</th><th>expected / cost / data</th><th>status</th></tr>
+<tr>
+<td><b>H42-1</b></td>
+<td><b>Worming × persistence (shipped).</b> Faults as dual-scale-stable edges.</td>
+<td>RTP (band 2) + isostatic gravity (band 13) of <code>training_features.tif</code>; <code>labels.tif</code> only as a removal mask.</td>
+<td>Hornby–Boschetti–Horowitz worms at 0–3200 m continuation × scale-space maxima persistence (sigmas 0–16 px, elder rule); score = steps × steps.</td>
+<td>Zero labels in the detector; catalogue pixels hard-zeroed, so every dot is off-catalogue by construction; hidden test = faults <i>not</i> in the catalogue.</td>
+<td>First dual-scale-corroboration detector in the group: no prior arm multiplies continuation survival by topological persistence, on either layer.</td>
+<td>PRIMARY +0.0125, 4/4 folds over single-scale at matched mass · cost: built · data: in repo.</td>
+<td><span class="tag ship">SHIPPED (UNSCIRED)</span></td>
+</tr>
+<tr>
+<td><b>H42-2</b></td>
+<td><b>Tilt-angle worms on TMI.</b> The tilt angle normalises anomaly amplitude, so weak edges of shallow buried faults (the hidden population) get equal vote with strong ones.</td>
+<td>TMI (band 14) + TMI vertical gradient (band 9); RTP as corroboration.</td>
+<td>Tilt = atan(VG / |HG|); zero-contour + worm survival of the tilt surface across continuation. Targets the <i>location</i> of contacts independent of magnetisation strength (Salem et al. 2007).</td>
+<td>Buried/weakly-magnetic faults have no surface trace (unmapped) but still deflect the tilt zero-contour; amplitude-normalisation is exactly the “see what mappers missed” operator.</td>
+<td>H42-1 worms the raw fields; no arm has wormed a phase/normalised transform. Different failure mode, complementary misses.</td>
+<td>Expected small-positive on PRIMARY (weak-edge recall) · cost low (1 transform + existing ladder) · data in repo.</td>
+<td><span class="tag queue">QUEUED</span></td>
+</tr>
+<tr>
+<td><b>H42-3</b></td>
+<td><b>Worm-intersection nodes × MT conductance.</b> Fault intersections/step-overs are the permeable nodes that host geothermal upflow; conductive clay caps (MT) mark the same nodes.</td>
+<td>H42-1 worm lines + MT conductance maps (GDR 1391, via doi:10.5066/P9TWT2LU) + 2 m probe corroboration.</td>
+<td>Graph nodes where ≥2 worm segments meet within 300 m, weighted by shallow (2–10 km) conductance; emission only at corroborated nodes.</td>
+<td>Catalogue traces are mapped as isolated lines; intersections of <i>unmapped</i> cross-structures are systematically missing, yet are the highest-permeability targets experts verify in round 2.</td>
+<td>No arm has built a worm graph or used MT conductance as a node weight. Pure addition arm on top of H42-1 geometry.</td>
+<td>Expected small on round 1, unbounded on round 2 (expert-verifiable nodes) · cost medium (graph + MT regrid) · data: VERIFIED OBTAINABLE, GDR 1391 links live (see sources).</td>
+<td><span class="tag queue">QUEUED</span></td>
+</tr>
+<tr>
+<td><b>H42-4</b></td>
+<td><b>2 m temperature-probe anomaly mask as corroborated addition.</b> Shallow conductive heat marks permeable structure the 100 m geophysics cannot resolve.</td>
+<td>GDR 1391 “2m Temperature Probes” (1.03 MB, in-mirror) + H42-1 score as the corroboration filter + catalogue buffer.</td>
+<td>Probe-temperature anomaly surface (IDW, 100 m grid); emit only where anomaly ∩ (H42-1 score &gt; 0) ∩ off-catalogue — a mask, not a surface, so mass stays inside the credit budget.</td>
+<td>Probe network samples ground truth heat, not mapped lines; GEMSDOE32 measured uncorroborated thermal addition at 0.002–0.005 credit/dot vs the 0.054 bar (falsified) — corroboration is the fix being tested.</td>
+<td>H42-1 uses no thermal data; H33-1 was falsified <i>uncorroborated</i>, H33-3 registered-but-unbuilt. This is the corroborated variant neither repo built.</td>
+<td>Expected ~0 on PRIMARY (sparse probes) unless corroboration concentrates it · cost low (zip already mirrored) · data in mirror.</td>
+<td><span class="tag queue">QUEUED</span></td>
+</tr>
+<tr>
+<td><b>H42-5</b></td>
+<td><b>Paleo-geothermal prior on worm tips/step-overs.</b> Sinter/travertine/tufa mark where the crust already leaked fluid — present-day permeable structure.</td>
+<td>GDR 1391 “Paleo Geothermal Features” (82 kB, in-mirror) + H42-1 worm skeleton (tips + releasing bends).</td>
+<td>Tip/step-over extension of the worm skeleton, emitted only within 500 m of a paleo feature: a geological prior over <i>where to extend</i>, not a detector.</td>
+<td>Tips are by definition past the end of mapped traces (off-catalogue by construction); paleo features carry a fluid-flow attribute the fault catalogue lacks.</td>
+<td>No tip/step-over operator exists in this repo (H33-5 was falsified as an <i>uncorroborated</i> addition at 0.0077 credit/dot); the paleo gate is the new mechanism.</td>
+<td>Expected small-positive on PRIMARY · cost medium (skeleton + rasterise) · data in mirror.</td>
+<td><span class="tag queue">QUEUED</span></td>
+</tr>
+</table>
+
+<h2>Ranking rationale (expected DTI improvement ÷ cost)</h2>
+<ol>
+<li><b>H42-1 first:</b> only arm with a measured PRIMARY pass (+0.0125, 4/4); cost already sunk; it is the base every other arm modifies.</li>
+<li><b>H42-2 second:</b> lowest cost (one transform, same ladder/code), directly targets the buried-fault population, falsifiable in one holdout run.</li>
+<li><b>H42-3 third:</b> highest round-2 upside (expert-verifiable permeable nodes) but medium cost and an external regrid step.</li>
+<li><b>H42-4 fourth:</b> low cost but the uncorroborated variant already falsified nearby — the corroboration fix must prove itself from a low prior.</li>
+<li><b>H42-5 fifth:</b> medium cost, narrow emission domain (tips near paleo features); small mass means small score movement either way.</li>
+</ol>
+<p class="small mut">Falsification record: nothing in this repo has been falsified yet except the single-scale baseline it beats. H33-1/H33-5 falsifications cited above are GEMSDOE32's measured results (owner checkout, labelled accordingly) and are used as priors, not as verification.</p>
+<footer>GEMSDOE42 · <a href="research.html">research + holdout detail</a> · <a href="sources.html">sources</a></footer>
+</div>
+</body>
+</html>

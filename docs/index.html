@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE42 — worming × persistence for the DOE GEMS Prize</title>
+<style>
+:root{--ink:#1a1a1a;--mut:#5a5a5a;--acc:#0b5cad;--bg:#fff;--card:#f4f7fb;--line:#dfe6ef}
+*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;background:var(--bg);line-height:1.55}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 60px}
+nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
+nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
+.hero{background:linear-gradient(180deg,#eef4ff,#fff);border-bottom:1px solid var(--line);padding:34px 0 26px}
+.hero h1{margin:0 0 6px;font-size:30px}.hero p.sub{color:var(--mut);margin:0 0 16px}
+.dl{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:18px 0}
+.dl h2{margin:0 0 8px;font-size:20px}
+.btn{display:inline-block;background:var(--acc);color:#fff!important;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;margin:4px 8px 4px 0}
+.btn.ghost{background:#fff;color:var(--acc)!important;border:2px solid var(--acc)}
+code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:13px}
+pre{background:#0d1b2a;color:#e6edf3;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}th{background:#eef2f7}
+h2{margin-top:34px}h3{margin-top:24px}.mut{color:var(--mut)}.small{font-size:13px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+img.thumb{width:100%;border:1px solid var(--line);border-radius:8px}
+.warn{background:#fff8e6;border:1px solid #e8c547;border-radius:8px;padding:10px 14px;margin:14px 0}
+.ok{background:#eefbf0;border:1px solid #57b26a;border-radius:8px;padding:10px 14px;margin:14px 0}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+</div></nav>
+<div class="hero"><div class="wrap">
+<h1>GEMSDOE42 — multiscale worming × topological persistence</h1>
+<p class="sub">DOE GEMS Prize (DrivenData #306): find geothermal-indicative faults <b>not</b> in the USGS/INGENIOUS catalogue. A candidate must survive <b>two independent notions of scale</b> — upward-continuation worming <b>and</b> topological persistence — on the magnetic (RTP) and gravity layers.</p>
+<p class="small mut">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Every claim carries an evidence class. No organiser score exists for any file here — the candidate is <b>UNSCIRED</b>.</p>
+</div></div>
+<div class="wrap">
+
+<div class="dl">
+<h2>⬇ One-click submission file</h2>
+<p><a class="btn" href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif" download>Download primary .tif (zeros, 181&nbsp;KB)</a>
+<a class="btn ghost" href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.zip" download>.zip (single GeoTIFF inside)</a></p>
+<p class="small">Also: <a href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-nan.tif" download>NaN-outside twin (competition convention)</a> · <a href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-audit.json">format receipt (independent re-read)</a></p>
+<p><b>Filename:</b> <code>gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif</code></p>
+<p><b>Unique submission name:</b> <code>GEMSDOE42-H42-1-WORMPERSIST</code></p>
+<p><b>Note to paste (126/200 chars):</b></p>
+<pre>GEMSDOE42 H42-1 worming x persistence | 30363 dots off-catalogue, RTP+gravity worms x topo persistence; sha 5d4913b0; UNSCORED</pre>
+<p class="small mut">single band · float32 · EPSG:32611 · 100 m · 3730×3292 · 30,363 dots · 0 on-catalogue · every cell finite in [0,1] · 0 NaN · nodata=None · sha256 <code>5d4913b07464f15b…</code> · rebuild-verified bit-identical</p>
+</div>
+
+<div class="warn"><b>Portal error “Predicted values must be in range [0, 1]” — fixed by construction.</b> Two mechanisms cause it: (1) the float32 sentinel <code>-3.4e38</code> written through (3,061 such cells sit inside the footprint); (2) a NaN nodata tag on a strict validator. This primary is all-finite with <code>nodata=None</code>: all 12,279,160 cells satisfy 0 ≤ v ≤ 1 with zero NaNs — verified by re-reading the written bytes (12-point audit).</div>
+
+<h2>What this is</h2>
+<p>Per-pixel persistence score = <b>(worm continuation steps survived, 0–12)</b> × <b>(topological birth–death steps, 0–12)</b>, summed over the RTP magnetic and isostatic-gravity layers, normalised to [0,1], catalogue-masked, thinned to 30,363 dots at 2.8 px spacing. Zero labels are used anywhere in the detector, so the holdout cannot leak.</p>
+<ul>
+<li><b>Worming</b> (Hornby, Boschetti &amp; Horowitz 1999): FFT upward continuation at 0/200/400/800/1600/3200 m; worms = 3×3 maxima of |horizontal gradient| above the per-scale top-15%.</li>
+<li><b>Persistence</b> (Edelsbrunner–Letscher–Zomorodian 2002, scale-space form): maxima of the h=0 gradient surfaces tracked across Gaussian sigmas 0/1/2/4/8/16 px with the elder rule; persistence = death − birth + 1.</li>
+<li><b>Uniqueness gate:</b> max Pearson <b>0.0053</b> / Jaccard <b>0.0061</b> vs 24 prior raw outputs → PASS.</li>
+<li><b>Sparsity gate:</b> 30,363 dots vs 775,106 single-scale top-15% pixels (25× sparser) → PASS.</li>
+<li><b>Holdout H42-PREREG-1:</b> PRIMARY off-catalogue SGMC instrument <b>+0.0125 mean, 4/4 folds</b> over the single-scale baseline at matched mass → <b>PASS, slot-eligible</b>.</li>
+</ul>
+
+<h2>Evidence at a glance</h2>
+<div class="grid2">
+<div><img class="thumb" src="assets/dots_primary.png" alt="primary dots"><p class="small mut">Primary: 30,363 dots (red) on the footprint.</p></div>
+<div><img class="thumb" src="assets/score01.png" alt="persistence score"><p class="small mut">Continuous persistence score [0,1] — sparse by construction.</p></div>
+<div><img class="thumb" src="assets/worm_joint.png" alt="worm survival"><p class="small mut">Joint worm survival 0–12 (RTP + gravity).</p></div>
+<div><img class="thumb" src="assets/gradmag_rtp_h0.png" alt="single-scale gradient"><p class="small mut">Single-scale RTP |gradient| — the diffuse baseline we beat.</p></div>
+</div>
+
+<h2>How scores work here (evidence classes)</h2>
+<table>
+<tr><th>number</th><th>value</th><th>class</th><th>meaning</th></tr>
+<tr><td>public leader</td><td>0.3262 (nchuzhoy)</td><td>verified 2026-10-05</td><td>official leaderboard read</td></tr>
+<tr><td>group best (owner claim)</td><td>0.2778 (H33-2-B2)</td><td>claim</td><td>submission-screen report, no organiser receipt</td></tr>
+<tr><td>this candidate</td><td>UNSCIRED</td><td>model</td><td>holdout PASS licenses the slot, never a score claim</td></tr>
+<tr><td>uniqueness</td><td>r ≤ 0.0053, J ≤ 0.0061</td><td>measured here</td><td>vs 24 prior raw outputs, this checkout</td></tr>
+<tr><td>holdout contrast</td><td>+0.0125, 4/4 folds</td><td>measured here</td><td>PRIMARY SGMC off-catalogue, matched mass</td></tr>
+</table>
+
+<h2>Reproduce it</h2>
+<pre>bash scripts/restore_data.sh
+/home/user/pyenv42/bin/python scripts/build_submission.py --budget 40000
+/home/user/pyenv42/bin/python scripts/validate_holdout.py
+/home/user/pyenv42/bin/python -m pytest tests/ -q</pre>
+<p class="small mut">CPU-only, measured: ~53 s cold / ~19 s warm; holdout ~63 s; tests ~2 s. Rebuild is bit-identical (sha256 pinned).</p>
+
+<footer>GEMSDOE42 · method: H42-1 worming × persistence · <a href="sources.html">all sources with verification status</a> · <a href="irregularities.html">irregularity register</a> · generated 2026-10-05, no organiser score exists for any file here.</footer>
+</div>
+</body>
+</html>
