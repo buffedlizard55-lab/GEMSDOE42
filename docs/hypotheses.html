@@ -1,95 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Candidate hypotheses, ranked — GEMSDOE42</title>
-<style>
-:root{--ink:#1a1a1a;--mut:#5a5a5a;--acc:#0b5cad;--bg:#fff;--card:#f4f7fb;--line:#dfe6ef}
-*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;line-height:1.55}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px}
-nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
-nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
-code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:13px}
-table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}th{background:#eef2f7}
-.mut{color:var(--mut)}.small{font-size:13px}
-.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 8px;margin-right:6px}
-.ship{background:#dff3e3}.queue{background:#e8eefb}.mut2{color:var(--mut)}
-footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ranked, evidence-labeled hypotheses for detecting previously unmapped faults in the DOE GEMS region.">
+  <title>Hypotheses · GEMSDOE42</title>
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<nav><div class="wrap">
-<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
-</div></nav>
-<div class="wrap">
-<h1>Candidate hypotheses, ranked by expected DTI per unit cost</h1>
-<p class="mut">Rule: nothing touches a submission slot without beating the holdout best on the preregistered PRIMARY instrument (off-catalogue SGMC, matched mass). H42-1 passed and is the shipped primary. H42-2…H42-5 are queued, each with layers, signature, off-catalogue rationale, novelty statement, and data status.</p>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">G42</span><span>GEMSDOE42</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a aria-current="page" href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <p class="eyebrow">Research register · status as of 2026-10-05</p>
+    <h1>Candidate geology, ranked before testing</h1>
+    <p class="lead">These are preregistered hypotheses, not score claims. The rank combines plausible information gain for distance-weighted Tversky (DTI) with implementation/data cost. No spatial holdout is available in this checkout, so <strong>none is cleared for a competition submission slot</strong>.</p>
 
-<table>
-<tr><th>#</th><th>hypothesis</th><th>layers</th><th>physical signature</th><th>why off-catalogue</th><th>novelty vs this repo</th><th>expected / cost / data</th><th>status</th></tr>
-<tr>
-<td><b>H42-1</b></td>
-<td><b>Worming × persistence (shipped).</b> Faults as dual-scale-stable edges.</td>
-<td>RTP (band 2) + isostatic gravity (band 13) of <code>training_features.tif</code>; <code>labels.tif</code> only as a removal mask.</td>
-<td>Hornby–Boschetti–Horowitz worms at 0–3200 m continuation × scale-space maxima persistence (sigmas 0–16 px, elder rule); score = steps × steps.</td>
-<td>Zero labels in the detector; catalogue pixels hard-zeroed, so every dot is off-catalogue by construction; hidden test = faults <i>not</i> in the catalogue.</td>
-<td>First dual-scale-corroboration detector in the group: no prior arm multiplies continuation survival by topological persistence, on either layer.</td>
-<td>PRIMARY +0.0125, 4/4 folds over single-scale at matched mass · cost: built · data: in repo.</td>
-<td><span class="tag ship">SHIPPED (UNSCIRED)</span></td>
-</tr>
-<tr>
-<td><b>H42-2</b></td>
-<td><b>Tilt-angle worms on TMI.</b> The tilt angle normalises anomaly amplitude, so weak edges of shallow buried faults (the hidden population) get equal vote with strong ones.</td>
-<td>TMI (band 14) + TMI vertical gradient (band 9); RTP as corroboration.</td>
-<td>Tilt = atan(VG / |HG|); zero-contour + worm survival of the tilt surface across continuation. Targets the <i>location</i> of contacts independent of magnetisation strength (Salem et al. 2007).</td>
-<td>Buried/weakly-magnetic faults have no surface trace (unmapped) but still deflect the tilt zero-contour; amplitude-normalisation is exactly the “see what mappers missed” operator.</td>
-<td>H42-1 worms the raw fields; no arm has wormed a phase/normalised transform. Different failure mode, complementary misses.</td>
-<td>Expected small-positive on PRIMARY (weak-edge recall) · cost low (1 transform + existing ladder) · data in repo.</td>
-<td><span class="tag queue">QUEUED</span></td>
-</tr>
-<tr>
-<td><b>H42-3</b></td>
-<td><b>Worm-intersection nodes × MT conductance.</b> Fault intersections/step-overs are the permeable nodes that host geothermal upflow; conductive clay caps (MT) mark the same nodes.</td>
-<td>H42-1 worm lines + MT conductance maps (GDR 1391, via doi:10.5066/P9TWT2LU) + 2 m probe corroboration.</td>
-<td>Graph nodes where ≥2 worm segments meet within 300 m, weighted by shallow (2–10 km) conductance; emission only at corroborated nodes.</td>
-<td>Catalogue traces are mapped as isolated lines; intersections of <i>unmapped</i> cross-structures are systematically missing, yet are the highest-permeability targets experts verify in round 2.</td>
-<td>No arm has built a worm graph or used MT conductance as a node weight. Pure addition arm on top of H42-1 geometry.</td>
-<td>Expected small on round 1, unbounded on round 2 (expert-verifiable nodes) · cost medium (graph + MT regrid) · data: VERIFIED OBTAINABLE, GDR 1391 links live (see sources).</td>
-<td><span class="tag queue">QUEUED</span></td>
-</tr>
-<tr>
-<td><b>H42-4</b></td>
-<td><b>2 m temperature-probe anomaly mask as corroborated addition.</b> Shallow conductive heat marks permeable structure the 100 m geophysics cannot resolve.</td>
-<td>GDR 1391 “2m Temperature Probes” (1.03 MB, in-mirror) + H42-1 score as the corroboration filter + catalogue buffer.</td>
-<td>Probe-temperature anomaly surface (IDW, 100 m grid); emit only where anomaly ∩ (H42-1 score &gt; 0) ∩ off-catalogue — a mask, not a surface, so mass stays inside the credit budget.</td>
-<td>Probe network samples ground truth heat, not mapped lines; GEMSDOE32 measured uncorroborated thermal addition at 0.002–0.005 credit/dot vs the 0.054 bar (falsified) — corroboration is the fix being tested.</td>
-<td>H42-1 uses no thermal data; H33-1 was falsified <i>uncorroborated</i>, H33-3 registered-but-unbuilt. This is the corroborated variant neither repo built.</td>
-<td>Expected ~0 on PRIMARY (sparse probes) unless corroboration concentrates it · cost low (zip already mirrored) · data in mirror.</td>
-<td><span class="tag queue">QUEUED</span></td>
-</tr>
-<tr>
-<td><b>H42-5</b></td>
-<td><b>Paleo-geothermal prior on worm tips/step-overs.</b> Sinter/travertine/tufa mark where the crust already leaked fluid — present-day permeable structure.</td>
-<td>GDR 1391 “Paleo Geothermal Features” (82 kB, in-mirror) + H42-1 worm skeleton (tips + releasing bends).</td>
-<td>Tip/step-over extension of the worm skeleton, emitted only within 500 m of a paleo feature: a geological prior over <i>where to extend</i>, not a detector.</td>
-<td>Tips are by definition past the end of mapped traces (off-catalogue by construction); paleo features carry a fluid-flow attribute the fault catalogue lacks.</td>
-<td>No tip/step-over operator exists in this repo (H33-5 was falsified as an <i>uncorroborated</i> addition at 0.0077 credit/dot); the paleo gate is the new mechanism.</td>
-<td>Expected small-positive on PRIMARY · cost medium (skeleton + rasterise) · data in mirror.</td>
-<td><span class="tag queue">QUEUED</span></td>
-</tr>
-</table>
+    <div class="callout callout-warning">
+      <strong>Novelty caveat:</strong> the local checkout initially contained no detector code. The supplied history mentions prior `wormrank` and `wormsurv-filter` outputs marked “zeros”, and public sibling pages document other registered approaches. The exact prior source code and raw rasters are absent, so “never tried anywhere” cannot be proven. The distinction below is against the named methods visible in the user-supplied history; audit all prior code and artifacts before treating any arm as novel.
+    </div>
 
-<h2>Ranking rationale (expected DTI improvement ÷ cost)</h2>
-<ol>
-<li><b>H42-1 first:</b> only arm with a measured PRIMARY pass (+0.0125, 4/4); cost already sunk; it is the base every other arm modifies.</li>
-<li><b>H42-2 second:</b> lowest cost (one transform, same ladder/code), directly targets the buried-fault population, falsifiable in one holdout run.</li>
-<li><b>H42-3 third:</b> highest round-2 upside (expert-verifiable permeable nodes) but medium cost and an external regrid step.</li>
-<li><b>H42-4 fourth:</b> low cost but the uncorroborated variant already falsified nearby — the corroboration fix must prove itself from a low prior.</li>
-<li><b>H42-5 fifth:</b> medium cost, narrow emission domain (tips near paleo features); small mass means small score movement either way.</li>
-</ol>
-<p class="small mut">Falsification record: nothing in this repo has been falsified yet except the single-scale baseline it beats. H33-1/H33-5 falsifications cited above are GEMSDOE32's measured results (owner checkout, labelled accordingly) and are used as priors, not as verification.</p>
-<footer>GEMSDOE42 · <a href="research.html">research + holdout detail</a> · <a href="sources.html">sources</a></footer>
-</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rank / hypothesis</th><th>Inputs and physical signature</th><th>Why it may find a catalogue-missing fault</th><th>Difference from known prior work</th><th>Expected DTI direction / cost</th><th>Data check and decision</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>1 · WPH-01</strong><br>Potential-field worm survival × scale-space topological persistence</td>
+            <td>Official competition isostatic-gravity anomaly plus an RTP/total-field magnetic layer. Upward continuation at multiple heights; local maxima of horizontal-gradient magnitude form candidate worms. Separately smooth each gradient-magnitude surface over a registered Gaussian scale sweep and compute 0D superlevel persistence (birth minus merge/death level). Match persistence maxima between adjacent smoothing scales. Per layer: <code>score = continuation-survival × normalized topological lifetime/scale persistence</code>; fuse the two maps and normalize to [0,1].</td>
+            <td>Fault-related density/susceptibility boundaries can persist as edges at different continuation heights and smoothing scales even where a mapped surface trace is absent. Requiring both stabilities rejects one-scale texture, but potential-field interpretation remains non-unique.</td>
+            <td>Distinct from a single continuation count and from single-scale gradient/NMS maps. The exact PH × worm product is not identified in the listed prior submissions; however, `wormrank` and `wormsurv-filter` are explicit earlier attempts, so this is a refinement, not a claim of a never-seen method family. The classic magnetic worm workflow often uses a pseudogravity transform; the exact transform requires magnetization/field assumptions not verified in this checkout. The code will label the RTP implementation as HBH-inspired unless those assumptions are supplied and checked.</td>
+            <td><strong>Potential: high; confidence: low/unknown.</strong> It may improve edge selectivity or may under-cover faults by becoming too sparse. <strong>Cost: high</strong> (FFT continuations, multiscale filtering, 0D persistence, large rasters).</td>
+            <td>Needs only official competition features and known labels, but those rasters are not present and the official data page requires a participant login. No holdout run, no correlation audit, no slot approval. <strong>Top candidate but blocked.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2 · LCR-02</strong><br>Lithology-conditioned potential-field residual boundaries</td>
+            <td>Competition gravity and magnetic anomaly layers, plus USGS State Geologic Map Compilation (SGMC) map-unit polygons. Within broad lithology/age groups, estimate local robust background distributions and map persistent residual discontinuities/gradient ridges that cross or offset contacts; suppress boundaries explained solely by a change in mapped unit.</td>
+            <td>Blind and alluvium-covered structures may separate blocks or offset physical-property contrasts without a Quaternary surface-fault trace. Conditioning on lithology may reduce false lineaments caused by ordinary compositional contacts.</td>
+            <td>Different from emitting SGMC fault vectors or raw catalogue-difference traces: SGMC is a nuisance/geological context for residual modeling, not the target label. It also differs from an unconditioned multi-physics edge union. No such residual-by-unit model is present in this checkout; the `sgmc-off-catalogue` prior name is a duplication risk to audit.</td>
+            <td><strong>Potential: medium; confidence: low.</strong> Coarse map scale and map-boundary errors may overwhelm the effect. <strong>Cost: medium-high</strong> (download, reprojection/rasterization, stratified statistics, spatial holdout).</td>
+            <td>USGS SGMC data are publicly listed; the official catalog has a newer GeMS release. Nevada download links are listed on USGS MRData. Exact tile coverage, schema, alignment, and local download have not been verified. Do not call viable until those checks pass. <a href="https://data.usgs.gov/datacatalog/data/USGS:a3d298d7-3b4f-45aa-92c1-72dedb292af2">USGS catalog</a> · <a href="https://mrdata.usgs.gov/geology/state/state.php?state=NV">Nevada files/services</a></td>
+          </tr>
+          <tr>
+            <td><strong>3 · TEM-03</strong><br>Time-evolving microseismic migration, not static earthquake density</td>
+            <td>USGS ComCat reviewed event locations/times and available moment-tensor/focal-mechanism products; competition earthquake-density bands only as a corroboration layer. Test for spatiotemporal migration or repeatable line-segment clusters with consistent fault-plane orientation, and require separation from the supplied known-fault buffer.</td>
+            <td>Instrumental earthquakes and aftershock migration can expose active structures that lack mapped Quaternary scarps. A temporal progression is different evidence from a smoothed static event-density blob.</td>
+            <td>Earlier public project notes mention broad seismic-density/lineament and focal-mechanism concepts. The distinguishing hypothesis is the <strong>time-ordered migration</strong> statistic, not raw epicenter density. Prior source review is incomplete, so novelty remains conditional.</td>
+            <td><strong>Potential: low-to-medium on public DTI; potentially useful discovery evidence.</strong> <strong>Cost: high</strong> (catalogue QA, temporal declustering, magnitude completeness, product filtering and spatial registration).</td>
+            <td>USGS FDSN ComCat query is reachable and returned two reviewed events for a broad Nevada-area, one-day query on 2020-05-15, including the M6.5 Monte Cristo event. This proves endpoint access, not sufficient coverage or a validated lineament. A regional completeness/coverage audit is still required. <a href="https://earthquake.usgs.gov/fdsnws/event/1/">ComCat API</a> · <a href="https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;starttime=2020-05-15T00:00:00&amp;endtime=2020-05-16T00:00:00&amp;minmagnitude=5&amp;minlatitude=35&amp;maxlatitude=42&amp;minlongitude=-120&amp;maxlongitude=-115">example query</a></td>
+          </tr>
+          <tr>
+            <td><strong>4 · HCR-04</strong><br>Hydrochemical mixing-front anomalies in wells and springs</td>
+            <td>Public INGENIOUS well/spring temperature and aqueous-chemistry records (GDR 1391); where available, use robust compositional balances/ratios or a preregistered multivariate endmember model. Project anomalies to the competition grid only after location accuracy and sample density are audited; test as a corroboration/prior, not an automatic fault trace.</td>
+            <td>Thermal-fluid mixing and water-rock interaction can mark permeable pathways; anomalies in wells away from a mapped fault could point to concealed structures or fault-connected flow.</td>
+            <td>Different from temperature thresholding or a single Na-K-Ca geothermometer used as an emission/removal rule. Prior GEMSDOE32 notes do report geothermometer and shallow-temperature arms; this is a conditional multivariate mixing residual, not a claim that hydrochemistry is untouched.</td>
+            <td><strong>Potential: medium with high coverage uncertainty.</strong> Sparse, uneven samples may produce broad interpolation artifacts. <strong>Cost: medium</strong> (data QA, compositional handling, location uncertainty, blocked evaluation).</td>
+            <td>GDR 1391 landing page identifies the archive as publicly accessible under CC BY 4.0 and lists a 19.85 MB well/spring geodatabase. The exact fields, spatial coverage in the competition footprint, license attribution, and downloadable bytes still require local audit. <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Preregistered promotion gate</h2>
+    <ol>
+      <li>Freeze the current holdout-best raster and protocol before evaluating any arm. This repo has no such raster/report yet; status is blocked.</li>
+      <li>Use contiguous spatial blocks and exclude a 300 m guard around block boundaries. Do not random-split pixels or allow nearby labels to leak across folds.</li>
+      <li>Compare candidate and incumbent at matched emitted mass using the official distance-weighted Tversky implementation. Report per-fold DTI, paired deltas, output pixel mass, valid-mask coverage and spatial concentration.</li>
+      <li>Require a positive paired mean and improvement on at least 3 of 4 preregistered folds; report a block-bootstrap interval. A catalogue-only result is explicitly a proxy, not a test of newly discovered faults.</li>
+      <li>Before creating a public download link, compare raw values against every prior submission TIFF on the identical valid mask. Record each artifact hash, Pearson and Spearman correlations, and support overlap. Missing prior artifacts means the distinctness gate is incomplete.</li>
+      <li>Only after all gates pass may a named TIFF be packaged. A successful local validation still is not an organizer score; do not use a DrivenData slot until the candidate beats the holdout incumbent.</li>
+    </ol>
+
+    <div class="callout">
+      <strong>Current outcome:</strong> no candidate was fitted or measured because the authorized training/label/template rasters and the incumbent holdout data are missing. No weekly submission slot was used. See <a href="research/validation.html">the validation record</a> and <a href="irregularities.html">the blocker register</a>.
+    </div>
+  </main>
+  <footer class="site-footer"><span>Evidence-first research · no organizer score claimed</span><a href="sources.html">Sources</a></footer>
 </body>
 </html>

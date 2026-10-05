@@ -1,0 +1,15 @@
+{
+  "ready": false,
+  "candidate_id": null,
+  "filename": null,
+  "download_path": null,
+  "sha256": null,
+  "status": "blocked_missing_competition_data_holdout_baseline_and_prior_raw_artifacts",
+  "checked_utc": "2026-10-05",
+  "reason": "No verified aligned prediction exists in this checkout. The download remains disabled until data provenance, spatial holdout, GeoTIFF validation, and all-prior raw-raster distinctness gates pass.",
+  "holdout_passed": false,
+  "holdout_receipt": null,
+  "format_receipt": null,
+  "correlation_receipt": null,
+  "weekly_submission_slot_used": false
+}

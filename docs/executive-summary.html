@@ -1,69 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive summary: how to submit — GEMSDOE42</title>
-<style>
-:root{--ink:#1a1a1a;--mut:#5a5a5a;--acc:#0b5cad;--bg:#fff;--card:#f4f7fb;--line:#dfe6ef}
-*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;line-height:1.55}
-.wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
-nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
-nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
-code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:13px}
-pre{background:#0d1b2a;color:#e6edf3;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:13px}
-.btn{display:inline-block;background:var(--acc);color:#fff!important;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;margin:4px 8px 4px 0}
-.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
-.step h3{margin:0 0 4px}.mut{color:var(--mut)}.small{font-size:13px}
-table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}th{background:#eef2f7}
-.warn{background:#fff8e6;border:1px solid #e8c547;border-radius:8px;padding:10px 14px;margin:14px 0}
-footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Step-by-step instructions and validation requirements for submitting a single GeoTIFF to the DOE GEMS Prize.">
+  <title>Executive Summary &amp; Submission Guide · GEMSDOE42</title>
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<nav><div class="wrap">
-<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
-</div></nav>
-<div class="wrap">
-<h1>Executive summary: how to submit in 5 minutes</h1>
-<p class="mut">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize (DrivenData #306)</a> · deadline <b>Dec 3, 2026 11:59pm UTC</b> · format spec: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description p.967</a>.</p>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">G42</span><span>GEMSDOE42</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Overview</a><a aria-current="page" href="executive-summary.html">Submit</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <p class="eyebrow">Executive Summary · submission checklist</p>
+    <h1>One TIFF. One final choice.<br><em>Evidence first.</em></h1>
+    <p class="lead">The contest upload must be a single-band GeoTIFF of pixel-wise fault confidence. This page explains the exact file checks and the participant's portal steps. It does not claim a candidate exists today.</p>
 
-<div class="step"><h3>Step 1 — download the file (10 seconds)</h3>
-<p><a class="btn" href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif" download>Download primary .tif</a>
-<a class="btn" style="background:#fff;color:var(--acc)!important;border:2px solid var(--acc)" href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.zip" download>or .zip</a></p>
-<p class="small">File: <code>gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif</code> (181 KB). Use the <b>zeros</b> variant for maximum validator compatibility (all cells finite in [0,1], no NaN, nodata=None). The <a href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-nan.tif">nan twin</a> is byte-identical inside the footprint and matches the competition's own convention.</p></div>
+    <div class="callout callout-warning">
+      <strong>Current download status: blocked.</strong> No verified TIFF is attached to this site. The competition rasters, official sample grid, spatial holdout incumbent, and prior raw submission TIFFs are absent from the checkout. The download on the <a href="index.html#submission">overview page</a> remains disabled until the scientific and format gates pass.
+    </div>
 
-<div class="step"><h3>Step 2 — verify the download (30 seconds, optional but recommended)</h3>
-<pre>sha256sum gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif
-# must print: 5d4913b07464f15be8f1dfa868487921fc3fbcb6b4d86ca8cbc011467df28507</pre>
-<p class="small">Full 12-point receipt: <a href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-audit.json">audit.json</a> (grid, dtype, range, footprint, catalogue-leakage checks).</p></div>
+    <section class="summary-grid" aria-label="Submission requirements">
+      <div class="summary-tile"><span>Raster bands</span><strong>1</strong></div>
+      <div class="summary-tile"><span>Pixel type</span><strong>float32</strong></div>
+      <div class="summary-tile"><span>Prediction values</span><strong>[0, 1]</strong></div>
+      <div class="summary-tile"><span>CRS / resolution</span><strong>EPSG:32611 / 100 m</strong></div>
+    </section>
+    <p class="small-note">All bounds, shape, affine transform and footprint must match the official training/sample grid exactly. The official sample TIFF—not another project's webpage—is the authority for the exact grid dimensions.</p>
 
-<div class="step"><h3>Step 3 — open the submission form (1 minute)</h3>
-<p>Log in to DrivenData, open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, click <b>Submit</b> in the sidebar, then <b>Make new submission</b>. (You must have clicked <b>Compete!</b> to enroll first.)</p></div>
+    <h2>Before upload: verify the artifact</h2>
+    <ol class="numbered-list">
+      <li><strong>Use an eligible, authorized candidate.</strong> It must have passed the frozen spatial-block holdout against the incumbent, with matched emitted mass and a recorded positive improvement; this repository does not yet have that evidence.</li>
+      <li><strong>Confirm distinctness.</strong> Compare raw output values with every prior TIFF on the common valid footprint. Record hashes, correlation statistics and support overlap. If any previous artifact is missing, the “every prior submission” check is incomplete.</li>
+      <li><strong>Open the format receipt.</strong> It must confirm one band, float32, CRS EPSG:32611, 100 m pixel size, exact template bounds/transform/shape, finite in-footprint values, no in-footprint nodata sentinel, and values within `[0,1]`.</li>
+      <li><strong>Check the outside footprint.</strong> Only outside-footprint cells may be null/NaN. The writer will preserve the template footprint and use NaN/nodata outside it, avoiding negative sentinel values that can trigger “Predicted values must be in range [0, 1]”.</li>
+      <li><strong>Keep the receipt with the file.</strong> Record the TIFF SHA-256, model/config ID, data checksums and holdout result before using a contest slot.</li>
+    </ol>
 
-<div class="step"><h3>Step 4 — upload + name + note (1 minute)</h3>
-<p><b>File to submit:</b> choose the downloaded <code>.tif</code> (or the <code>.zip</code> — the portal accepts a single-band GeoTIFF or a .zip containing one).<br>
-<b>Submission name:</b> <code>GEMSDOE42-H42-1-WORMPERSIST</code><br>
-<b>Note (optional) — paste exactly:</b></p>
-<pre>GEMSDOE42 H42-1 worming x persistence | 30363 dots off-catalogue, RTP+gravity worms x topo persistence; sha 5d4913b0; UNSCORED</pre></div>
+    <h2>Click-by-click DrivenData submission</h2>
+    <ol class="numbered-list">
+      <li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">official GEMS competition page</a> and sign into the participant's own account. This project will not ask for, store, or use account credentials.</li>
+      <li>Open the submission form for the competition and select the validated <code>.tif</code> file from this project's download card. Do not select a GeoTIFF preview, zip with multiple rasters, training labels, or an unvalidated output.</li>
+      <li>Enter a distinct submission name. Recommended pattern: <code>GEMSDOE42-WPH01-YYYYMMDD-HHMMZ-&lt;8-char-hash&gt;</code>. The actual generated name must be copied from its audit receipt; do not use the example literally.</li>
+      <li>Paste the concise note shown with the candidate artifact. Keep it factual (method/config ID and gate status); do not describe an unscored candidate as a win.</li>
+      <li>Submit in the authorized web form. Review the portal response, save the official submission ID/receipt and displayed public score, and separately mark whether it is the one final entry. Do not automate portal submission.</li>
+      <li>Before the final deadline, choose exactly one final solution as required by the official rules. Feedback submissions are limited to three per week, so conserve slots and re-check the live rules/timeline before use.</li>
+    </ol>
 
-<div class="step"><h3>Step 5 — submit and record (2 minutes)</h3>
-<p>Click <b>Create/Submit</b>. If the portal reports a score, record the score + timestamp + sha256 in the repo's slot log before doing anything else (a score without a recorded sha is unverifiable). If the portal reports <i>“Predicted values must be in range [0, 1]”</i>, see below — this file is built to be immune, so an error would be new information.</p></div>
+    <div class="note-card">
+      <h3>Short note template (not yet approved to use)</h3>
+      <p class="code-note">GEMSDOE42 WPH-01 | continuation survival × scale-space 0D persistence on gravity/RTP magnetics; spatial holdout and all-prior correlation receipts attached; candidate unscored.</p>
+      <p class="small-note">Use only if these operations actually ran and the status is accurately reflected. The official portal's note field is optional; this draft is under 200 characters, but the generated manifest should be the source of truth.</p>
+    </div>
 
-<div class="warn"><b>Why the [0,1] error cannot come from this file.</b> Verified by re-reading the written bytes: single band, float32, EPSG:32611, 3730×3292, min 0.0 / max 1.0, 12,279,160/12,279,160 cells finite and in range, 0 NaN, no nodata tag, 0 dots on the catalogue. The two known trigger mechanisms (float32 <code>-3.4e38</code> sentinel; NaN nodata) are both absent. Historical note: the sample submission's wording says “total fault absence” but its bytes contain 60,988 pixels equal to 1 on the labelled faults — verified in this checkout.</div>
+    <section class="panel panel-highlight" id="ai-disclosure">
+      <p class="eyebrow">Required by official rules</p>
+      <h2>Generative-AI disclosure</h2>
+      <p>The September 2026 DOE/NLR official rules allow generative AI but require the submission narrative to state the extent and manner in which it was used. The entrant is responsible for the accuracy, authenticity and authorship statements.</p>
+      <p class="code-note">Draft wording to adapt truthfully: “Generative AI tools assisted with repository review, literature/source organization, and code drafting/review. The entrant reviewed and verified the data provenance, analysis, code, output raster and claims; any assistance used for the final narrative and submission materials is described here.”</p>
+      <p class="small-note">Do not copy this statement unchanged if it does not accurately describe the final work. The human entrant must disclose all relevant AI use, including work on code, analyses and narrative.</p>
+    </section>
 
-<h2>What you are submitting (30-second version)</h2>
-<p>30,363 dots marking structures whose edges survive <b>both</b> upward-continuation worming (0–3200 m) <b>and</b> topological persistence across smoothing scales on the RTP magnetic and isostatic-gravity layers. Nothing on the published catalogue (hidden test = faults <i>not</i> in the catalogue). Uniqueness vs 24 prior raw outputs: Pearson ≤ 0.0053. Holdout: beats the single-scale baseline on the off-catalogue SGMC instrument in 4/4 folds. <b>Status: UNSCORED</b> — the holdout licenses the slot; only the portal can score.</p>
+    <h2>Local workflow when authorized inputs are available</h2>
+    <p>The repo includes a fail-closed preflight, candidate generator, format validator, four-fold holdout evaluator and all-prior audit. The template prior-manifest shipped here is incomplete and will correctly fail until every raw artifact and checksum is supplied.</p>
+    <pre class="code-note"><code>python -m venv .venv
+.venv/bin/python -m pip install -e '.[dev]'
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python scripts/prepare_data.py --data-dir data
+.venv/bin/python scripts/build_candidate.py --data-dir data
+.venv/bin/python scripts/evaluate_candidate.py \
+  --candidate artifacts/candidates/&lt;candidate-name&gt;.tif \
+  --incumbent data/holdout/incumbent-best.tif \
+  --prior-manifest data/prior-output-manifest.csv \
+  --data-dir data</code></pre>
+    <p class="small-note">The candidate generator writes only to ignored <code>artifacts/candidates/</code>. A passing local evaluation is still not an organizer score or a public download; a human entrant must review the evidence and choose any subsequent release or submission.</p>
 
-<h2>Format checklist (from p.967, verified)</h2>
-<table>
-<tr><th>requirement</th><th>this file</th><th>check</th></tr>
-<tr><td>same CRS (EPSG:32611)</td><td>EPSG:32611</td><td>✅ re-read</td></tr>
-<tr><td>same resolution (100 m)</td><td>100 m</td><td>✅ re-read</td></tr>
-<tr><td>same bounds; null/NaN outside</td><td>zeros outside (finite); nan twin available</td><td>✅ re-read</td></tr>
-<tr><td>single layer float32 in [0,1]</td><td>1 band, float32, min 0 max 1</td><td>✅ re-read</td></tr>
-</table>
-<footer>GEMSDOE42 · <a href="index.html">front page</a> · <a href="research.html">why this should score</a> · <a href="sources.html">sources</a></footer>
-</div>
+    <h2 id="limitations">Current limitations and next steps</h2>
+    <div class="table-wrap">
+      <table><thead><tr><th>Blocker</th><th>Why it blocks a valid outcome</th><th>Next action</th></tr></thead>
+      <tbody>
+        <tr><td>Official competition inputs absent</td><td>Need exact aligned feature layers, labels and template to run inference, validate grid and create a non-fabricated output.</td><td>Participant downloads the permitted data package through the official login-gated page and places files in local <code>data/</code>. This code does not handle credentials.</td></tr>
+        <tr><td>No frozen holdout best/report</td><td>Cannot test that WPH-01 beats the incumbent, which is a hard gate before spending any weekly slot.</td><td>Recover or establish hash-pinned spatial folds and baseline; run the preregistered protocol.</td></tr>
+        <tr><td>Prior raw TIFFs missing</td><td>Cannot verify low correlation against every previous submission.</td><td>Build a complete artifact manifest and provide local copies/links that can be verified and opened; missing files keep the gate blocked.</td></tr>
+        <tr><td>Potential-field magnetic transform assumptions</td><td>Classic magnetic worming may use pseudogravity; no magnetization/field parameters are verified here.</td><td>Audit official band metadata and transform assumptions. Until then, report the method as an RTP-field variant, not an exact pseudogravity reproduction.</td></tr>
+        <tr><td>Live-feed automation</td><td>DrivenData Terms of Use prohibit automated monitoring/copying absent written consent.</td><td>Use the direct official leaderboard link and date-stamped snapshots only; seek written consent before any automated feed.</td></tr>
+      </tbody></table>
+    </div>
+
+    <p class="source-note">Primary references: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a>, <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">DOE/NLR official rules PDF</a>, <a href="https://www.drivendata.org/termsofuse/">DrivenData Terms of Use</a>. See <a href="sources.html">the source register</a> for what was and was not independently verified.</p>
+  </main>
+  <footer class="site-footer"><span>Submission guide · last evidence review 2026-10-05</span><a href="index.html">Back to overview</a></footer>
 </body>
 </html>
