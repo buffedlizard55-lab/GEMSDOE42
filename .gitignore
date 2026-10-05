@@ -1,0 +1,19 @@
+# Competition data are access-controlled and may be large; never commit them.
+/data/*
+!/data/README.md
+/artifacts/
+/build/
+/dist/
+*.tif
+*.tiff
+*.aux.xml
+*.ovr
+*.py[cod]
+__pycache__/
+.venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Open blockers, evidence conflicts and project risks for the GEMSDOE42 research workflow.">
+  <title>Irregularities &amp; blockers · GEMSDOE42</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">G42</span><span>GEMSDOE42</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <p class="eyebrow">Open evidence register · reviewed 2026-10-05 UTC</p>
+    <h1>Blockers and unresolved claims</h1>
+    <p class="lead">These items are intentionally visible. No conflict is silently reconciled by guesswork. A missing binary or receipt is a blocker, not evidence of a pass.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Finding</th><th>Why it matters / gate</th></tr></thead>
+        <tbody>
+          <tr><td>IR-42-01</td><td>The checkout began as README-only; no competition inputs, model, tests, holdout, or prior TIFFs were present.</td><td>WPH-01 tooling is implemented and 22 synthetic/reference unit tests pass, but no data-dependent output can be generated or scored. Await lawful local inputs.</td></tr>
+          <tr><td>IR-42-02</td><td>The official DrivenData data page redirects unauthenticated users to login.</td><td>Do not bypass authentication. The authorized participant must obtain the package from the official page.</td></tr>
+          <tr><td>IR-42-03</td><td>The user attributes 0.2778 to the H33-H33-2-B2 artifact, whose owner page says “UNSCORED” and calls 0.2747 a projection; the official public board shows an unlinked 0.2778 row for <code>extradr19</code>.</td><td>Attribution is unresolved. Require a submission receipt and matching file hash before making the link.</td></tr>
+          <tr><td>IR-42-04</td><td>The supplied 0.3195 “highest” score is stale against the 2026-10-05 public snapshot: 0.3262 was #1; 0.3195 was DARD.</td><td>Use dated public snapshots only; public scores are not private-set/final results.</td></tr>
+          <tr><td>IR-42-05</td><td>A sibling project page uses both 3292×3730 and 3730×3292 dimensions.</td><td>Derive grid dimensions and transform from the official sample GeoTIFF, never from another project's page.</td></tr>
+          <tr><td>IR-42-06</td><td>No byte-identifiable prior submission TIFF is in this checkout. The 58-row prior-output manifest template has no local paths or hashes.</td><td>The all-prior distinctness gate fails closed until every relevant file is present and hash-pinned.</td></tr>
+          <tr><td>IR-42-07</td><td>No current holdout-best raster, frozen folds, prior fold scores or comparable baseline report is present.</td><td>Cannot demonstrate that WPH-01 beats the current holdout best; do not spend a weekly slot.</td></tr>
+          <tr><td>IR-42-08</td><td>Automated live leaderboard monitoring is disallowed by the published Terms of Use absent written consent.</td><td>No scraper or submission bot. Keep the dated manual snapshot and direct official link.</td></tr>
+          <tr><td>IR-42-09</td><td>Classic magnetic worm analysis may use pseudogravity, but verified magnetization/field-transform assumptions are absent.</td><td>Use a documented RTP band and call this an RTP-field variant; do not invent transform parameters.</td></tr>
+          <tr><td>IR-42-10</td><td>The requested unique, easy-download TIFF cannot be generated honestly without the official input grid and passing evidence.</td><td>Static-site download is deliberately disabled. No synthetic or copied raster will be presented as a competition prediction.</td></tr>
+          <tr><td>IR-42-11</td><td>Official rules require generative-AI use disclosure in the narrative.</td><td>The entrant must accurately disclose the actual extent and manner of AI use and remains responsible for the submission.</td></tr>
+          <tr><td>IR-42-12</td><td>Public GeoDAWN, SGMC and DEM products do not automatically match the competition's exact grid or coverage.</td><td>Record source, license, hash, CRS, transform, coverage and resampling before using them.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><strong>Current gate decision:</strong> WPH-01 is a ranked research hypothesis with an initial implementation. It has not been run on competition data, compared on holdout, correlated against prior outputs, or submitted.</div>
+    <p class="source-note">Related records: <a href="research/validation.html">validation protocol</a>, <a href="research/score-forensics.html">score forensics</a>, <a href="prior-results.csv">prior-result register</a>.</p>
+  </main>
+  <footer class="site-footer"><span>Open blockers · no unsupported attribution</span><a href="index.html">Back to overview</a></footer>
+</body>
+</html>

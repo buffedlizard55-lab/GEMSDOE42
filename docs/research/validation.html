@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="WPH-01 preregistered holdout, GeoTIFF format and prior-raster distinctness gates.">
+  <title>Validation protocol · GEMSDOE42</title>
+  <link rel="stylesheet" href="../site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark">G42</span><span>GEMSDOE42</span></a>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Overview</a><a href="../executive-summary.html">Submit</a><a href="../hypotheses.html">Hypotheses</a><a href="../sources.html">Sources</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <p class="eyebrow">Pre-registered · WPH-01 · 2026-10-05</p>
+    <h1>Validation before promotion</h1>
+    <p class="lead">The inference code now exists and 22 synthetic/reference unit tests pass, but the required competition rasters, frozen incumbent, and prior raw artifacts do not. No candidate has been run on official data or scored. Every promotion/download gate remains <strong>blocked</strong>.</p>
+    <div class="callout callout-warning"><strong>Run status: not run.</strong> A script implementation is not evidence of a validated model. Do not upload, download, or use a competition slot based on an unrun candidate.</div>
+
+    <h2>Frozen WPH-01 settings</h2>
+    <ul>
+      <li>Run separately on documented gravity and RTP magnetic input layers; do not invent a magnetic pseudogravity transform or field/magnetization assumptions.</li>
+      <li>Upward-continuation heights: 0, 100, 200, 400, 800, 1,600 and 3,200 m. Pick horizontal-gradient local maxima and track the longest consecutive pixel-scale path within a 2-pixel Chebyshev radius.</li>
+      <li>Compute H0 superlevel persistence on gradient-magnitude surfaces after Gaussian smoothing at 0.5, 1, 2, 4, 8, 16 and 32 pixels. Use a 4-neighbor graph, birth-minus-merge lifetime, omit one essential component per connected valid-mask component, and link maxima within 2 pixels across adjacent scales.</li>
+      <li>Multiply worm-survival fraction by normalized topological persistence for each layer. Robustly scale positive product values by their within-footprint 99.5th percentile and average gravity and magnetic scores equally. Scores are confidence/ranking values, not calibrated probabilities.</li>
+      <li>All settings and decision thresholds are in <a href="../wph01-preregistration.json">the machine-readable configuration</a>. Any change after viewing holdout results is a new experiment and must be registered first.</li>
+    </ul>
+
+    <h2>Spatial holdout and promotion rule</h2>
+    <ol class="numbered-list">
+      <li>Use four contiguous equal pixel quadrants from the official sample footprint. Remove a 300 m (three-pixel) edge guard. Save per-fold mask hashes; never randomly split pixels.</li>
+      <li>Compare the WPH candidate to the frozen current holdout incumbent on the same labeled valid pixels using the competition DTI (`alpha=0.2`, `beta=0.8`, triangular 300 m support).</li>
+      <li>For the primary comparison, binarize both maps at matched support: the incumbent's positive-pixel count within each fold, with unit confidence for selected pixels. If the candidate has fewer positive cells than required, fail closed instead of adding arbitrary zeros.</li>
+      <li>Also report unthresholded continuous-map DTI and the fixed 0.5% / 1% / 2% valid-fold-area support sweep. The 1× incumbent-support comparison is primary; sensitivity results do not replace the gate.</li>
+      <li>Promote only if mean paired DTI delta is positive, at least three of four folds improve, and a 95% fold/block-bootstrap interval excludes zero. Keep all fold terms and the interval in the receipt.</li>
+      <li>Report a single-scale gradient-magnitude comparator from the same data, plus nonzero-support fraction, top-1%/5% score-mass concentration and four-neighbor Moran's I. “Sparser and more concentrated” is a measured hypothesis.</li>
+    </ol>
+    <p class="small-note">Known-fault labels are incomplete and spatially biased; they can support a proxy comparison but cannot establish recall on genuinely unmapped faults.</p>
+
+    <h2>Format and distinctness gates</h2>
+    <ul>
+      <li>Write one float32 GeoTIFF on the official sample raster's exact CRS, shape, transform, bounds and valid-data mask. Require finite in-footprint predictions in [0,1] and null/NaN outside. Reopen the written bytes and save the format receipt.</li>
+      <li>Compare raw prediction values with every prior raw output on the exact same valid footprint. Require absolute Pearson and Spearman below 0.90 for every artifact; report exact all-pixel Pearson, deterministic sampled Spearman, exact positive-support Jaccard and sampled top-1% rank overlap.</li>
+      <li>The Spearman statistic is computed on a deterministic systematic sample to bound memory; the report states the sample count/stride. Every prior must have a local readable TIFF and a matching SHA-256. Any missing/unchecked artifact blocks the audit.</li>
+      <li>A passing local receipt means eligible for human review only. A human entrant must arrange the authorized download location, verify the final package, choose whether to use a slot, and submit through the official portal.</li>
+    </ul>
+
+    <div class="table-wrap">
+      <table><thead><tr><th>Required item</th><th>Current evidence</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Official training features, labels, sample grid</td><td>Not in local checkout; official data page requires participant login.</td><td><strong>Blocked</strong></td></tr>
+        <tr><td>Current holdout-best raster and prior fold report</td><td>Not present.</td><td><strong>Blocked</strong></td></tr>
+        <tr><td>Prior raw-raster collection and complete hashes</td><td>Not present; <a href="../prior-output-manifest-template.csv">58-entry template</a> is intentionally incomplete.</td><td><strong>Blocked</strong></td></tr>
+        <tr><td>Candidate inference, holdout, and format receipt</td><td>Synthetic/reference inference tests pass; no candidate run on official data or competition-grid validation is recorded.</td><td><strong>Not run</strong></td></tr>
+        <tr><td>Submission slot / organizer score</td><td>No slot used; no score claimed.</td><td><strong>None</strong></td></tr>
+      </tbody></table>
+    </div>
+    <p class="source-note">The full preregistration and run log are maintained in the repository. See also <a href="../irregularities.html">the irregularity register</a> and <a href="../executive-summary.html">submission checklist</a>.</p>
+  </main>
+  <footer class="site-footer"><span>WPH-01 validation · no result claimed</span><a href="../index.html">Back to overview</a></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evidence-first, reproducible GEMS geothermal fault discovery research and competition submission workflow.">
+  <meta name="theme-color" content="#0b2527">
+  <title>GEMSDOE42 · GEMS fault discovery</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">G42</span><span>GEMSDOE42</span></a>
+    <nav aria-label="Main navigation">
+      <a aria-current="page" href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero page-shell">
+      <div class="hero-copy">
+        <p class="eyebrow">DOE GEMS Prize · DrivenData competition 306</p>
+        <h1>Find faults the map<br><em>has not drawn yet.</em></h1>
+        <p class="hero-lead">A research and decision system for mapping previously undocumented geological faults from geophysical and terrain evidence—built to be auditable, reproducible, and honest about uncertainty.</p>
+        <div class="hero-actions"><a class="button button-light" href="executive-summary.html">Submission guide <span aria-hidden="true">↗</span></a><a class="button button-outline" href="hypotheses.html">Review hypotheses</a></div>
+        <p class="microcopy">Core values: <strong>Maximize P(Win)</strong> · <strong>Own the Outcome</strong></p>
+      </div>
+      <div class="hero-stats" aria-label="Project status">
+        <div class="stat"><span class="stat-label">Current public leader*</span><strong>0.3262</strong><span>nchuzhoy</span></div>
+        <div class="stat"><span class="stat-label">Submission status</span><strong class="status-text">Blocked</strong><span>No verified TIFF in this checkout</span></div>
+        <div class="stat"><span class="stat-label">Holdout gate</span><strong class="status-text">Not run</strong><span>Competition data unavailable</span></div>
+      </div>
+    </section>
+
+    <section class="page-shell section" id="submission">
+      <div class="section-heading">
+        <div><p class="eyebrow">Start here · one-click file</p><h2>Submission GeoTIFF</h2></div>
+        <span class="pill pill-blocked">Not yet available</span>
+      </div>
+      <div class="submission-card">
+        <div class="submission-icon" aria-hidden="true">↓</div>
+        <div class="submission-content">
+          <h3>No competition-ready TIFF has been generated</h3>
+          <p>The exact competition feature raster, labels, sample grid, holdout incumbent, and prior submission TIFFs are absent. A guessed or synthetic file could fail the contest format and would misrepresent scientific evidence, so the download is deliberately disabled.</p>
+          <div class="submission-meta"><span>Target format: single-band float32 GeoTIFF</span><span>Required grid: official sample raster</span><span>Prediction range: [0, 1]</span></div>
+          <a class="button button-disabled" id="download-button" aria-disabled="true" tabindex="-1">Download unavailable · data/evidence gate blocked</a>
+          <p class="microcopy" id="download-detail" aria-live="polite">When a candidate passes the spatial holdout, raster validator, and every-prior correlation audit, the unique file, SHA-256, note, and audit receipt will appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-shell section two-column">
+      <div class="panel panel-highlight">
+        <p class="eyebrow">The research question</p>
+        <h2>Can two kinds of scale stability find better edges?</h2>
+        <p>WPH-01 combines survival of gravity/RTP magnetic gradient edges during upward continuation with 0D topological lifetime of the same gradient surfaces across Gaussian smoothing scales. Their product is a testable candidate score—not a validated improvement.</p>
+        <a class="text-link" href="hypotheses.html">Read the ranked hypothesis register <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Current leader · snapshot</p>
+        <h2>0.3262, not 0.3195</h2>
+        <p>On the official public board fetched 2026-10-05 UTC, nchuzhoy was #1 at 0.3262 and DARD's 0.3195 was #4. The 0.2778 row is listed for `extradr19`; no public evidence ties it to the H33-2-B2 TIFF.</p>
+        <a class="text-link" href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Open official live leaderboard <span aria-hidden="true">↗</span></a>
+        <p class="microcopy">*This is a dated read, not an automated feed or a private-test result. <a href="leaderboard-snapshot-2026-10-05.json">Download the dated snapshot data</a>.</p>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="page-shell section">
+        <p class="eyebrow">Evidence before activity</p>
+        <h2>What must be true before a submission slot is used</h2>
+        <div class="gate-grid">
+          <article class="gate"><span class="gate-number">01</span><h3>Inputs verified</h3><p>Official files, CRS, raster dimensions, band descriptions, footprint, nodata and checksums captured.</p></article>
+          <article class="gate"><span class="gate-number">02</span><h3>Holdout improvement</h3><p>Spatially blocked, matched-mass DTI beats the frozen incumbent on the preregistered folds.</p></article>
+          <article class="gate"><span class="gate-number">03</span><h3>Format + uniqueness</h3><p>Re-read TIFF passes [0,1] and grid checks, then raw output is compared with every prior artifact.</p></article>
+          <article class="gate"><span class="gate-number">04</span><h3>Human submission</h3><p>Participant reviews evidence, uses the authorized portal, records the receipt, and selects one final entry.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-shell section footer-cta">
+      <div><p class="eyebrow">Executive summary</p><h2>Exactly how to make a contest submission</h2><p>File requirements, a click-by-click portal checklist, a unique-name pattern, a short-comment template, the AI disclosure requirement, and known blockers.</p></div>
+      <a class="button button-dark" href="executive-summary.html">Open the submission guide <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+  <footer class="site-footer"><span>GEMSDOE42 · evidence-first research · updated 2026-10-05</span><a href="sources.html">Verified sources &amp; access status</a></footer>
+  <script src="site-status.js" defer></script>
+</body>
+</html>
