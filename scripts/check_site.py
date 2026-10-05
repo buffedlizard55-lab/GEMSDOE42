@@ -12,6 +12,16 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
+PREDICTION_ARTIFACT_SUFFIXES = {".tif", ".tiff", ".zip"}
+
+
+def public_prediction_artifacts(docs: Path) -> list[Path]:
+    """Return candidate raster/archive files that would be publicly served."""
+    return sorted(
+        path
+        for path in docs.rglob("*")
+        if path.is_file() and path.suffix.lower() in PREDICTION_ARTIFACT_SUFFIXES
+    )
 
 
 class LinkParser(HTMLParser):
@@ -136,6 +146,14 @@ def main() -> int:
             or status.get("correlation_receipt") is not None
         ):
             errors.append("blocked submission status must not expose a download or passing receipts")
+        if status.get("ready") is False:
+            leaked = public_prediction_artifacts(DOCS)
+            if leaked:
+                names = ", ".join(str(path.relative_to(ROOT)) for path in leaked)
+                errors.append(
+                    "blocked submission status must not publish candidate raster/archive files: "
+                    + names
+                )
         snapshot = json.loads((DOCS / "leaderboard-snapshot-2026-10-05.json").read_text(encoding="utf-8"))
         if snapshot.get("automated_monitoring") is not False:
             errors.append("leaderboard snapshot must remain manual, not automated")

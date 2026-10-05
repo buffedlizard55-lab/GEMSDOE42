@@ -22,7 +22,7 @@
       <table>
         <thead><tr><th>ID</th><th>Finding</th><th>Why it matters / gate</th></tr></thead>
         <tbody>
-          <tr><td>IR-42-01</td><td>The checkout began as README-only; no competition inputs, model, tests, holdout, or prior TIFFs were present.</td><td>WPH-01 tooling is implemented and 22 synthetic/reference unit tests pass, but no data-dependent output can be generated or scored. Await lawful local inputs.</td></tr>
+          <tr><td>IR-42-01</td><td>The checkout began as README-only; no competition inputs, model, tests, holdout, or prior TIFFs were present.</td><td>WPH-01 tooling is implemented and 23 synthetic/reference unit tests pass, but no data-dependent output can be generated or scored. Await lawful local inputs.</td></tr>
           <tr><td>IR-42-02</td><td>The official DrivenData data page redirects unauthenticated users to login.</td><td>Do not bypass authentication. The authorized participant must obtain the package from the official page.</td></tr>
           <tr><td>IR-42-03</td><td>The user attributes 0.2778 to the H33-H33-2-B2 artifact, whose owner page says “UNSCORED” and calls 0.2747 a projection; the official public board shows an unlinked 0.2778 row for <code>extradr19</code>.</td><td>Attribution is unresolved. Require a submission receipt and matching file hash before making the link.</td></tr>
           <tr><td>IR-42-04</td><td>The supplied 0.3195 “highest” score is stale against the 2026-10-05 public snapshot: 0.3262 was #1; 0.3195 was DARD.</td><td>Use dated public snapshots only; public scores are not private-set/final results.</td></tr>
@@ -34,6 +34,7 @@
           <tr><td>IR-42-10</td><td>The requested unique, easy-download TIFF cannot be generated honestly without the official input grid and passing evidence.</td><td>Static-site download is deliberately disabled. No synthetic or copied raster will be presented as a competition prediction.</td></tr>
           <tr><td>IR-42-11</td><td>Official rules require generative-AI use disclosure in the narrative.</td><td>The entrant must accurately disclose the actual extent and manner of AI use and remains responsible for the submission.</td></tr>
           <tr><td>IR-42-12</td><td>Public GeoDAWN, SGMC and DEM products do not automatically match the competition's exact grid or coverage.</td><td>Record source, license, hash, CRS, transform, coverage and resampling before using them.</td></tr>
+          <tr><td>IR-42-13</td><td>The upstream <code>main</code> snapshot (commit <code>057323d</code>, merged by PR #1) included H42-1 TIFF/ZIP downloads and an audit claiming 30,363 emitted pixels, 12-point format checks, distinctness against 24 priors, and a +0.0125 four-fold holdout result.</td><td>Those files and performance assertions could not be independently reproduced from this checkout: official feature/label/template rasters, frozen fold/incumbent receipts, and raw prior TIFFs are absent. The inherited candidate artifacts were removed; downloads remain blocked until provenance, baseline/fold receipts, and the complete prior-raster audit are verifiable.</td></tr>
         </tbody>
       </table>
     </div>

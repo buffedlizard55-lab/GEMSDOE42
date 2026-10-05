@@ -29,7 +29,7 @@ These settings are an initial preregistered configuration, not literature-prescr
 ## Implementation and review passes (2026-10-05 UTC)
 
 1. **Algorithm/charter pass:** checked the WPH-01 implementation against the README prompt and official DTI definition. The detector reads only gravity/RTP features and sample footprint (no held-out labels); H0 lifetimes and upward continuation are explicit; score output is clipped to `[0,1]`; source, config, input and run hashes are recorded. The magnetic code is labelled as an RTP-field variant, not an invented pseudogravity transform. Matched support uses equal positive-pixel counts, and incomplete prior artifacts fail closed.
-2. **Implementation/test pass:** the pure-Python H0 and DTI references are checked against production NumPy/SciPy/Numba routines; tests cover ties/masks, metric distances, synthetic WPH inference, spatial folds, GeoTIFF range/grid/mask, band selection, and identical/missing prior artifacts. **22 unit tests pass** (`unittest` and pytest); Ruff, static-site link/config checks, Python compile, shell syntax, and whitespace checks pass. No official competition data were used. A GeoTIFF tiling issue discovered during the first test run was fixed by selecting legal multiple-of-16 tile dimensions.
+2. **Implementation/test pass:** the pure-Python H0 and DTI references are checked against production NumPy/SciPy/Numba routines; tests cover ties/masks, metric distances, synthetic WPH inference, spatial folds, GeoTIFF range/grid/mask, band selection, and identical/missing prior artifacts. **23 unit tests pass** (`unittest` and pytest); Ruff, static-site link/config checks, Python compile, shell syntax, and whitespace checks pass. No official competition data were used. A GeoTIFF tiling issue discovered during the first test run was fixed by selecting legal multiple-of-16 tile dimensions.
 3. **Evidence/release pass:** checked static-page links/config consistency, fixed the malformed ComCat example URL, verified download/leaderboard status remains disabled/manual, and ran the local data guards. Both data checks correctly returned status 2 because official features, labels and sample template are absent. No candidate TIFF was generated, no correlation/holdout gate was run, and no submission slot was used.
 
 ## Run record
@@ -37,7 +37,7 @@ These settings are an initial preregistered configuration, not literature-prescr
 - Inputs: absent (`data/training_features.tif`, `data/labels.tif`, `data/sample_submission.tif` not present at session start).
 - Current holdout-best raster / report: absent.
 - Prior output TIFFs / complete manifest: absent; the 58-row local template has blank paths/hashes and cannot pass.
-- Synthetic/reference testing: 22 unit tests pass; no official data were used.
+- Synthetic/reference testing: 23 unit tests pass; no official data were used.
 - Candidate inference on competition inputs: not run.
 - Four-fold DTI and paired deltas: not available.
 - Low-correlation audit: not available.

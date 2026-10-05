@@ -5,6 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.check_site import public_prediction_artifacts
+
 HAS_NUMPY = importlib.util.find_spec("numpy") is not None
 HAS_SCIPY = importlib.util.find_spec("scipy") is not None
 HAS_RASTERIO = importlib.util.find_spec("rasterio") is not None
@@ -28,6 +30,24 @@ def _sample_grid(rasterio, np, path: Path, *, width=80, height=80):
     with rasterio.open(path, "w", **profile) as dataset:
         dataset.write(data, 1)
     return profile
+
+
+class PublicPredictionArtifactGateTests(unittest.TestCase):
+    def test_finds_rasters_and_archives_that_must_not_ship_while_blocked(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            docs = Path(temporary)
+            downloads = docs / "downloads"
+            downloads.mkdir()
+            raster = downloads / "candidate.tif"
+            archive = downloads / "candidate.ZIP"
+            unrelated = downloads / "audit.json"
+            raster.touch()
+            archive.touch()
+            unrelated.touch()
+
+            found = {path.relative_to(docs) for path in public_prediction_artifacts(docs)}
+
+            self.assertEqual(found, {Path("downloads/candidate.tif"), Path("downloads/candidate.ZIP")})
 
 
 @unittest.skipUnless(HAS_NUMPY, "NumPy is an optional runtime dependency")
