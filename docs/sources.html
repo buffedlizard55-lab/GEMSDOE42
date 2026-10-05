@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — GEMSDOE42</title>
+<style>
+:root{--ink:#1a1a1a;--mut:#5a5a5a;--bg:#fff;--line:#dfe6ef}
+*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px 60px}
+nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
+nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13.5px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}th{background:#eef2f7}
+code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:12.5px}
+.mut{color:var(--mut)}.small{font-size:13px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+</div></nav>
+<div class="wrap">
+<h1>Sources (verify every line — links for manual review)</h1>
+<p class="mut">“verified” = fetched or measured in this checkout on the stated date. “listed” = official and public; reachability noted. Data files below were obtained via the owner's git mirrors (sha256-pinned in <code>scripts/restore_data.sh</code>), which reproduce the login-walled DrivenData bytes; pins prove mirror consistency, not organiser authentication.</p>
+<table>
+<tr><th>id</th><th>source</th><th>role</th><th>status</th></tr>
+<tr><td>competition</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize overview</a></td><td>competition home, deadline Dec 3 2026, $300K</td><td>verified 2026-10-05</td></tr>
+<tr><td>problem</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description, metric, submission format (p.967)</a></td><td>verbatim source of <code>metric.py</code>; worked example; format spec</td><td>verified 2026-10-05 (worked example reproduced in tests)</td></tr>
+<tr><td>about</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About / additional resources (p.968)</a></td><td>GeoDAWN background, fault primer, references</td><td>verified 2026-10-05</td></tr>
+<tr><td>leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>#1 nchuzhoy 0.3262 (2026-10-05)</td><td>verified 2026-10-05</td></tr>
+<tr><td>rules_pdf</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS rules PDF (NLR 96647)</a></td><td>official rules, two-round structure</td><td>verified 2026-10-05</td></tr>
+<tr><td>reference_solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (U-Net, Lipor)</a></td><td>baseline architecture</td><td>verified 2026-10-05 (cloned)</td></tr>
+<tr><td>geodawn</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN surveys</a></td><td>source of magnetic/radiometric bands</td><td>listed (official)</td></tr>
+<tr><td>sciencebase_area</td><td><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">GeoDAWN study-area item</a></td><td>survey extent</td><td>listed (official)</td></tr>
+<tr><td>gbcge</td><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy — INGENIOUS</a></td><td>source of INGENIOUS fault catalogue</td><td>listed (official)</td></tr>
+<tr><td>gdr1391</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391 INGENIOUS regional compilation (DOI 10.15121/1881483, CC-BY-4.0)</a></td><td>2 m probes, paleo features, wellsprings, MT links, QFaults</td><td>verified 2026-10-05 (page read; zips mirrored)</td></tr>
+<tr><td>hornby1999</td><td>Hornby, Boschetti &amp; Horowitz 1999, “Analysis of potential field data in the wavelet domain”, <i>GJI</i> 137, 175–196 + <a href="https://www.per.marine.csiro.au/staff/Fabio.Boschetti/papers/fvd_worms.PDF">CSIRO edge-detection follow-up (PDF)</a></td><td>worming theory: multiscale edges = gradient maxima across continuation</td><td>verified 2026-10-05</td></tr>
+<tr><td>blakely1996</td><td>Blakely, “Potential Theory in Gravity and Magnetic Applications”, CUP 1996, ch. 11</td><td>upward continuation = exp(−h|k|) filter (textbook)</td><td>listed (standard reference)</td></tr>
+<tr><td>elz2002</td><td>Edelsbrunner, Letscher &amp; Zomorodian 2002, “Topological persistence and simplification”, <i>DCG</i> 28</td><td>birth/death/persistence + elder rule</td><td>listed (standard reference)</td></tr>
+<tr><td>salem2007</td><td>Salem et al. 2007, tilt-angle method (H42-2 basis)</td><td>amplitude-normalised contact mapping</td><td>listed (queued hypothesis)</td></tr>
+<tr><td>training_features</td><td>owner mirror <code>buffedlizard55-lab/GEMSDOE:data/bridge/gems-geodawn-numerical-features.tif</code> (5 parts)</td><td>19-band competition features, 418,912,844 B</td><td>verified 2026-10-05: sha256 <code>4371c82e…23bc5</code> ✓</td></tr>
+<tr><td>labels</td><td>owner mirror <code>GEMSDOE24:data/bridge/labels.tif</code></td><td>catalogue raster (60,988 px)</td><td>verified 2026-10-05: sha256 <code>7ba308cc…25ae4093</code> ✓</td></tr>
+<tr><td>sample_submission</td><td>owner mirror <code>GEMSDOE24:data/bridge/sample_submission.tif</code></td><td>grid/footprint template (5,167,373 finite px)</td><td>verified 2026-10-05: sha256 <code>2176d08e…d35cbc</code> ✓</td></tr>
+<tr><td>sgmc</td><td>owner mirror <code>GEMSDOE24:data/external/derived_sgmc_faults_100m_u8.tif</code></td><td>off-catalogue instrument (PRIMARY holdout truth)</td><td>verified 2026-10-05 (in checkout)</td></tr>
+<tr><td>priors</td><td><code>buffedlizard55-lab/GEMSDOE32:docs/downloads/*.tif</code> (24 files)</td><td>uniqueness correlation set (learning only; never copied)</td><td>verified 2026-10-05 (in checkout, git-ignored)</td></tr>
+<tr><td>sibling_claims</td><td>group sites GEMSDOE→GEMSDOE39 (owner-reported scores incl. 0.2778)</td><td>priors for gap analysis; used as claims, never verification</td><td>read 2026-10-05 (H33 audit JSON re-verified for grid facts)</td></tr>
+</table>
+<h2>Data provenance note</h2>
+<p class="small">The DrivenData data tab is login-walled and was not accessed from this checkout. Competition bytes arrived via the owner's Dropbox→git bridge (<code>GEMSDOE:data/bridge/manifest.json</code>, generated 2026-09-17) and were verified here by sha256 against the pins in <code>GEMSDOE32:registry/data_manifest.json</code>. Band descriptions were read from the raster itself (rasterio <code>descriptions</code>), not trusted from any secondary document. GDR 1391 resources are CC-BY-4.0 with DOI 10.15121/1881483; USGS GeoDAWN/3DEP carry no use restrictions per the owner's receipts.</p>
+<footer>GEMSDOE42 · <a href="index.html">front page</a> · <a href="irregularities.html">irregularities</a></footer>
+</div>
+</body>
+</html>

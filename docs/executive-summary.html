@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary: how to submit — GEMSDOE42</title>
+<style>
+:root{--ink:#1a1a1a;--mut:#5a5a5a;--acc:#0b5cad;--bg:#fff;--card:#f4f7fb;--line:#dfe6ef}
+*{box-sizing:border-box}body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);margin:0;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 60px}
+nav{background:#0d1b2a;color:#fff;padding:10px 0}nav .wrap{display:flex;gap:18px;flex-wrap:wrap;padding-bottom:10px;padding-top:10px}
+nav a{color:#cfe3ff;text-decoration:none;font-size:14px}nav a:hover{text-decoration:underline}
+code{background:#eef1f6;padding:1px 6px;border-radius:5px;font-size:13px}
+pre{background:#0d1b2a;color:#e6edf3;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:13px}
+.btn{display:inline-block;background:var(--acc);color:#fff!important;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;margin:4px 8px 4px 0}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
+.step h3{margin:0 0 4px}.mut{color:var(--mut)}.small{font-size:13px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}th{background:#eef2f7}
+.warn{background:#fff8e6;border:1px solid #e8c547;border-radius:8px;padding:10px 14px;margin:14px 0}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:14px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="index.html"><b>GEMSDOE42</b></a><a href="executive-summary.html">Executive summary: how to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+</div></nav>
+<div class="wrap">
+<h1>Executive summary: how to submit in 5 minutes</h1>
+<p class="mut">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize (DrivenData #306)</a> · deadline <b>Dec 3, 2026 11:59pm UTC</b> · format spec: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description p.967</a>.</p>
+
+<div class="step"><h3>Step 1 — download the file (10 seconds)</h3>
+<p><a class="btn" href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif" download>Download primary .tif</a>
+<a class="btn" style="background:#fff;color:var(--acc)!important;border:2px solid var(--acc)" href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.zip" download>or .zip</a></p>
+<p class="small">File: <code>gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif</code> (181 KB). Use the <b>zeros</b> variant for maximum validator compatibility (all cells finite in [0,1], no NaN, nodata=None). The <a href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-nan.tif">nan twin</a> is byte-identical inside the footprint and matches the competition's own convention.</p></div>
+
+<div class="step"><h3>Step 2 — verify the download (30 seconds, optional but recommended)</h3>
+<pre>sha256sum gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-zeros.tif
+# must print: 5d4913b07464f15be8f1dfa868487921fc3fbcb6b4d86ca8cbc011467df28507</pre>
+<p class="small">Full 12-point receipt: <a href="downloads/gemsdoe42-h42-1-wormpersist-20261005T230000Z-d1db2d77-audit.json">audit.json</a> (grid, dtype, range, footprint, catalogue-leakage checks).</p></div>
+
+<div class="step"><h3>Step 3 — open the submission form (1 minute)</h3>
+<p>Log in to DrivenData, open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>, click <b>Submit</b> in the sidebar, then <b>Make new submission</b>. (You must have clicked <b>Compete!</b> to enroll first.)</p></div>
+
+<div class="step"><h3>Step 4 — upload + name + note (1 minute)</h3>
+<p><b>File to submit:</b> choose the downloaded <code>.tif</code> (or the <code>.zip</code> — the portal accepts a single-band GeoTIFF or a .zip containing one).<br>
+<b>Submission name:</b> <code>GEMSDOE42-H42-1-WORMPERSIST</code><br>
+<b>Note (optional) — paste exactly:</b></p>
+<pre>GEMSDOE42 H42-1 worming x persistence | 30363 dots off-catalogue, RTP+gravity worms x topo persistence; sha 5d4913b0; UNSCORED</pre></div>
+
+<div class="step"><h3>Step 5 — submit and record (2 minutes)</h3>
+<p>Click <b>Create/Submit</b>. If the portal reports a score, record the score + timestamp + sha256 in the repo's slot log before doing anything else (a score without a recorded sha is unverifiable). If the portal reports <i>“Predicted values must be in range [0, 1]”</i>, see below — this file is built to be immune, so an error would be new information.</p></div>
+
+<div class="warn"><b>Why the [0,1] error cannot come from this file.</b> Verified by re-reading the written bytes: single band, float32, EPSG:32611, 3730×3292, min 0.0 / max 1.0, 12,279,160/12,279,160 cells finite and in range, 0 NaN, no nodata tag, 0 dots on the catalogue. The two known trigger mechanisms (float32 <code>-3.4e38</code> sentinel; NaN nodata) are both absent. Historical note: the sample submission's wording says “total fault absence” but its bytes contain 60,988 pixels equal to 1 on the labelled faults — verified in this checkout.</div>
+
+<h2>What you are submitting (30-second version)</h2>
+<p>30,363 dots marking structures whose edges survive <b>both</b> upward-continuation worming (0–3200 m) <b>and</b> topological persistence across smoothing scales on the RTP magnetic and isostatic-gravity layers. Nothing on the published catalogue (hidden test = faults <i>not</i> in the catalogue). Uniqueness vs 24 prior raw outputs: Pearson ≤ 0.0053. Holdout: beats the single-scale baseline on the off-catalogue SGMC instrument in 4/4 folds. <b>Status: UNSCORED</b> — the holdout licenses the slot; only the portal can score.</p>
+
+<h2>Format checklist (from p.967, verified)</h2>
+<table>
+<tr><th>requirement</th><th>this file</th><th>check</th></tr>
+<tr><td>same CRS (EPSG:32611)</td><td>EPSG:32611</td><td>✅ re-read</td></tr>
+<tr><td>same resolution (100 m)</td><td>100 m</td><td>✅ re-read</td></tr>
+<tr><td>same bounds; null/NaN outside</td><td>zeros outside (finite); nan twin available</td><td>✅ re-read</td></tr>
+<tr><td>single layer float32 in [0,1]</td><td>1 band, float32, min 0 max 1</td><td>✅ re-read</td></tr>
+</table>
+<footer>GEMSDOE42 · <a href="index.html">front page</a> · <a href="research.html">why this should score</a> · <a href="sources.html">sources</a></footer>
+</div>
+</body>
+</html>
