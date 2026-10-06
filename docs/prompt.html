@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The task brief &mdash; GEMSDOE42</title><style>
+:root{--bg:#0b1120;--panel:#111a2e;--line:#1e2a44;--ink:#e6edf7;--dim:#93a4c3;--acc:#4cc9f0;
+--ok:#3ddc97;--warn:#ffb020;--bad:#ff5d73;--code:#0d1526}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{padding:34px 0 18px;border-bottom:1px solid var(--line)}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-size:23px;margin:44px 0 10px;padding-top:14px;border-top:1px solid var(--line);
+letter-spacing:-.01em}
+h3{font-size:17px;margin:24px 0 6px;color:#cfe0ff}
+p{margin:10px 0}code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:13.5px;
+font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);padding:13px 15px;border-radius:8px;overflow-x:auto;font-size:13px;
+border:1px solid var(--line)}pre code{background:none;padding:0}
+.sub{color:var(--dim);font-size:14px;margin-top:4px}
+nav{position:sticky;top:0;background:rgba(11,17,32,.94);backdrop-filter:blur(6px);
+border-bottom:1px solid var(--line);padding:9px 0;z-index:9;font-size:14px}
+nav a{margin-right:15px;white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+margin:14px 0}
+.hero{background:linear-gradient(135deg,#12203c,#0f1a30);border:1px solid #27406e;border-radius:14px;
+padding:24px;margin:18px 0}
+.dl{display:inline-block;background:var(--ok);color:#062b1c;font-weight:700;padding:13px 22px;
+border-radius:9px;margin:8px 10px 8px 0;font-size:16px}
+.dl:hover{text-decoration:none;filter:brightness(1.08)}
+.dl.sec{background:#2a3a5c;color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#152039;font-weight:600}
+tr:nth-child(even) td{background:#0e1729}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}.dim{color:var(--dim)}
+.kv{display:grid;grid-template-columns:230px 1fr;gap:5px 16px;font-size:14.5px;margin:10px 0}
+.kv div:nth-child(odd){color:var(--dim)}
+.box{border-left:3px solid var(--acc);padding:11px 15px;background:#101a30;margin:13px 0;
+border-radius:0 8px 8px 0}
+.box.warn{border-color:var(--warn);background:#241d10}
+.box.bad{border-color:var(--bad);background:#26121a}
+.box.ok{border-color:var(--ok);background:#0d2418}
+figure{margin:16px 0}figure img{max-width:100%;border:1px solid var(--line);border-radius:9px}
+figcaption{color:var(--dim);font-size:13px;margin-top:6px}
+footer{margin:50px 0 30px;padding-top:16px;border-top:1px solid var(--line);color:var(--dim);
+font-size:13px}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 10px;
+font-size:12.5px;color:var(--dim);margin-right:6px}
+</style></head><body>
+<nav><div class="wrap"><a href="index.html">&larr; back to the submission</a></div></nav>
+<main class="wrap"><h1>The task brief, verbatim</h1>
+<p class="dim">Reproduced in full and unedited, as required by the brief itself.</p>
+<pre><code># The task brief (verbatim)
+
+Reproduced in full and unedited, as required by the brief itself.
+
+---
+
+## This turn&#x27;s mandated method
+
+Build a unique, high-scoring submission TIF and a GitHub-Pages site for this repository.
+
+The method to use, mandated for this turn:
+
+&gt; Multiscale worming + topological persistence — track edges surviving upward continuation on
+&gt; magnetic AND gravity layers, separately compute persistent homology on the same layers&#x27;
+&gt; gradient-magnitude surfaces, multiply continuation-steps-survived × topological birth-death range
+&gt; into one persistence score per pixel, normalize [0,1], write required format, confirm low
+&gt; correlation against every prior submission&#x27;s raw output (output should be sparser/more spatially
+&gt; concentrated than a single-scale gradient map). Must be UNIQUE — no copying a previous submission
+&gt; except for learning/education.
+
+## Standing deliverables
+
+- Put the full prompt into the repo README.
+- Produce 3–5 ranked NEW geological hypotheses — layer(s), physical signature, why it finds faults
+  missing from the USGS/INGENIOUS catalogue, how it differs from anything already in the repo —
+  validated on spatially-blocked holdout before spending a submission slot.
+- The site must have the downloadable TIF and a &quot;how to submit&quot; executive summary at the very top.
+- Explain why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (GEMSDOE32) scored 0.2778 and whether
+  we can beat it.
+- Work autonomously with no manual input.
+- Verify line by line from official trusted sources with links.
+- No hallucinations.
+- Flag irregularities.
+- Run 3 passes (implement → review/fix → re-check).
+- Create a PR and merge to `main`.
+- End with remaining-work suggestions and limitations.
+
+## Standing constraints and corrections carried from earlier turns
+
+- Must produce a UNIQUE submission; do not copy a previous submission unless for learning/education.
+- Submission must be easy to download (click a file) and obvious at the very beginning / executive
+  summary of the site.
+- Predicted values must be in range [0,1] — a previously downloaded file was rejected with
+  &quot;Predicted values must be in range [0, 1]&quot;.
+- Needs a unique submission name and a short distinguishing comment for the submission form.
+- Data placement must be solved autonomously
+  (`bash scripts/download_competition_data.sh` then `python scripts/prepare_data.py`) —
+  &quot;you need to complete the above task by yourself… no manual input&quot;.
+- Verify line by line from official verified trusted sources; provide links for manual review;
+  no hallucinations; flag irregularities.
+- Validate on spatially-blocked holdout; do not spend a submission slot on an unvalidated idea.
+- If a candidate needs new external data, name the specific free official source and confirm
+  obtainability first.
+- Known limitation stated by the user: no DrivenData auth → cannot auto-download
+  `training_features.tif`, `labels.tif`, `sample_submission.tif`, `1m_DEM_links.csv` from the
+  DrivenData data page.
+- Multi-pass (3) review discipline required before finishing; create PR then merge to main.
+</code></pre></main></body></html>

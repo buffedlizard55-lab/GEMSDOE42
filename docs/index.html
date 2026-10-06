@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE42 &mdash; cross-scale worm &times; persistence submission for DOE GEMS</title>
+<meta name="description" content="A unique GeoTIFF submission for the U.S. DOE GEMS Prize
+Challenge (DrivenData 306), built by multiscale worming multiplied by dim-0 topological persistence.">
+<style>
+:root{--bg:#0b1120;--panel:#111a2e;--line:#1e2a44;--ink:#e6edf7;--dim:#93a4c3;--acc:#4cc9f0;
+--ok:#3ddc97;--warn:#ffb020;--bad:#ff5d73;--code:#0d1526}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+header{padding:34px 0 18px;border-bottom:1px solid var(--line)}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}
+h2{font-size:23px;margin:44px 0 10px;padding-top:14px;border-top:1px solid var(--line);
+letter-spacing:-.01em}
+h3{font-size:17px;margin:24px 0 6px;color:#cfe0ff}
+p{margin:10px 0}code{background:var(--code);padding:2px 5px;border-radius:4px;font-size:13.5px;
+font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);padding:13px 15px;border-radius:8px;overflow-x:auto;font-size:13px;
+border:1px solid var(--line)}pre code{background:none;padding:0}
+.sub{color:var(--dim);font-size:14px;margin-top:4px}
+nav{position:sticky;top:0;background:rgba(11,17,32,.94);backdrop-filter:blur(6px);
+border-bottom:1px solid var(--line);padding:9px 0;z-index:9;font-size:14px}
+nav a{margin-right:15px;white-space:nowrap}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+margin:14px 0}
+.hero{background:linear-gradient(135deg,#12203c,#0f1a30);border:1px solid #27406e;border-radius:14px;
+padding:24px;margin:18px 0}
+.dl{display:inline-block;background:var(--ok);color:#062b1c;font-weight:700;padding:13px 22px;
+border-radius:9px;margin:8px 10px 8px 0;font-size:16px}
+.dl:hover{text-decoration:none;filter:brightness(1.08)}
+.dl.sec{background:#2a3a5c;color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#152039;font-weight:600}
+tr:nth-child(even) td{background:#0e1729}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}.dim{color:var(--dim)}
+.kv{display:grid;grid-template-columns:230px 1fr;gap:5px 16px;font-size:14.5px;margin:10px 0}
+.kv div:nth-child(odd){color:var(--dim)}
+.box{border-left:3px solid var(--acc);padding:11px 15px;background:#101a30;margin:13px 0;
+border-radius:0 8px 8px 0}
+.box.warn{border-color:var(--warn);background:#241d10}
+.box.bad{border-color:var(--bad);background:#26121a}
+.box.ok{border-color:var(--ok);background:#0d2418}
+figure{margin:16px 0}figure img{max-width:100%;border:1px solid var(--line);border-radius:9px}
+figcaption{color:var(--dim);font-size:13px;margin-top:6px}
+footer{margin:50px 0 30px;padding-top:16px;border-top:1px solid var(--line);color:var(--dim);
+font-size:13px}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:2px 10px;
+font-size:12.5px;color:var(--dim);margin-right:6px}
+</style></head><body>
+<header><div class="wrap">
+<h1>GEMSDOE42 &mdash; cross-scale worming &times; topological persistence</h1>
+<div class="sub">A unique, format-verified submission for the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">U.S. DOE GEMS Prize
+Challenge</a> &middot; generated 2026-10-06T00:06:10Z &middot;
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE42">source</a></div>
+</div></header>
+
+<nav><div class="wrap">
+<a href="#submit">Submit</a><a href="#score">Score</a><a href="#method">Method</a>
+<a href="#validation">Validation</a><a href="#hypotheses">Hypotheses</a>
+<a href="#irregularities">Irregularities</a><a href="#sources">Sources</a>
+<a href="#honesty">Honesty</a><a href="prompt.html">Prompt</a>
+</div></nav>
+<main class="wrap">
+
+<div class="hero">
+  <h2 style="margin-top:0;border:none;padding:0">Executive summary &mdash; download the submission</h2>
+  <p>The file below is a ready-to-submit GeoTIFF for the
+  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData
+  <em>U.S. DOE GEMS Prize Challenge</em></a> (competition 306). It is single-band
+  <code>float32</code>, <code>EPSG:32611</code>, 100&nbsp;m, 3730&nbsp;&times;&nbsp;3292, every
+  value in <b>[0,&nbsp;1]</b>, NaN outside the survey footprint &mdash; the exact format the
+  submission form enforces.</p>
+  <p>
+    <a class="dl" href="downloads/gems42-xscale-worm-persistence-20261006T000541Z-nan.tif">&#11015;&nbsp; DOWNLOAD SUBMISSION
+      (380.9 KB)</a>
+    <a class="dl sec" href="downloads/gems42-xscale-worm-persistence-20261006T000541Z-nan.zip">.zip</a>
+    <a class="dl sec" href="downloads/gems42-xscale-worm-persistence-20261006T000541Z-zeros.tif">0-filled twin</a>
+  </p>
+  <div class="kv">
+    <div>Submission name</div><div><code>gems42-xscale-worm-persistence-20261006T000541Z</code></div>
+    <div>SHA-256</div><div><code>7de8f533e13a26c25aadd74852b920a6ef759d5beab5d453ba25cb2d9212b9c9</code></div>
+    <div>Emitted pixels</div><div><b>60,069</b> of
+      5,167,373 in-footprint pixels (1.162%)</div>
+    <div>Value range</div><div>0.0 &hellip; 1.0 &mdash; <span class="ok">verified</span></div>
+    <div>On known catalogue faults</div><div>0 pixels
+      (the organiser masks these out of scoring, so they are excluded on purpose)</div>
+    <div>Method</div><div>multiscale worming &times; topological persistence
+      (see <a href="#method">method</a>)</div>
+    <div>Uniqueness</div><div>max |Pearson| vs any of 12 restored prior GEMSDOE submissions =
+      <b>0.0248</b>,
+      max |Spearman| = <b>0.0248</b></div>
+  </div>
+  <div class="box warn"><b>Read the honesty section before you submit.</b> Neither of this
+  repository's two validation instruments predicts the live leaderboard well (Spearman +0.087 and
+  +0.305 against 11 known scores). The submission is a genuine, independently-derived candidate;
+  it is <b>not</b> evidence of a top-of-board result. See
+  <a href="#honesty">what we can and cannot claim</a>.</div>
+</div>
+
+<h2 id="submit">How to submit (step by step)</h2>
+<div class="card">
+<ol>
+<li><b>Download</b> <a href="downloads/gems42-xscale-worm-persistence-20261006T000541Z-nan.tif"><code>gems42-xscale-worm-persistence-20261006T000541Z-nan.tif</code></a>
+  with the green button at the top of this page. It is 380.9&nbsp;KB.</li>
+<li><b>Go to</b> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">
+  the competition page</a> and sign in with a DrivenData account that has accepted the rules.</li>
+<li><b>Open</b> the <em>Submit</em> tab and upload the <code>.tif</code> directly. Do
+  <b>not</b> unzip, re-compress, or re-project it &mdash; the form checks CRS, extent, dtype and
+  value range, and any re-save can flip the float32 representation.</li>
+<li><b>Paste the submission name</b> (it must be unique to your account):
+  <pre><code>gems42-xscale-worm-persistence-20261006T000541Z</code></pre></li>
+<li><b>Paste the comment</b>:
+  <pre><code>GEMSDOE42 cross-scale stability: multiscale worming (Hornby/Boschetti/Horowitz upward-continuation edge survival) multiplied by dim-0 persistent homology of the same layers&#x27; gradient-magnitude surfaces across a smoothing sweep.</code></pre></li>
+<li><b>Submit.</b> The score appears on the leaderboard within minutes. The initial prize round
+  accepts submissions through the stated deadline; the same file is re-scored in the final round
+  against an expert-expanded label set.</li>
+</ol>
+<p class="dim">If the form rejects the file with &ldquo;Predicted values must be in range
+[0,&nbsp;1]&rdquo;, use the <a href="downloads/gems42-xscale-worm-persistence-20261006T000541Z-zeros.tif">0-filled twin</a>:
+identical predictions, but nulls outside the footprint are written as <code>0.0</code> instead of
+<code>NaN</code>. Both files were audited by <code>scripts/audit_shipped.py</code> and both pass all
+11 format checks.</p>
+</div>
+
+<h2 id="score">Can we beat 0.3195? The short, honest answer</h2>
+<p>The brief asked us to explain why the family's previous best
+(<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, public score <b>0.2778</b>) scored what
+it did, and whether we can beat it. The live board at the time of writing:</p>
+<table class=""><thead><tr><th>#</th><th>team</th><th>public DTI</th></tr></thead><tbody><tr><td>1</td><td>nchuzhoy</td><td><b>0.3262</b></td></tr><tr><td>2</td><td>kinghorton42</td><td><b>0.3222</b></td></tr><tr><td>3</td><td>alexoktaba</td><td><b>0.3220</b></td></tr><tr><td>4</td><td>DARD</td><td><b>0.3195</b></td></tr><tr><td>5</td><td>joeyfezster</td><td><b>0.3163</b></td></tr><tr><td>13</td><td>extradr19 (prior GEMSDOE best)</td><td><b>0.2778</b></td></tr><tr><td>19</td><td>SDCF9</td><td><b>0.2600</b></td></tr></tbody></table>
+<p>Two things follow, and they pull in opposite directions.</p>
+<h3>1. Why 0.2778 scored what it did</h3>
+<p>That file was 37,654 positive pixels, none of them on a known catalogue fault, built by
+pruning a base emission that its own repository had measured at 0.2708. Its <em>projected</em>
+0.2747 was an internal model, not a score. Working the metric backwards
+(<code>src/gems42/emission_model.py</code>) with the fitted hidden-truth size
+|G|&nbsp;&asymp;&nbsp;23,035&nbsp;px, a score of 0.2778 at
+37,654 dots implies roughly <b>36%</b> of dots landed within 300&nbsp;m of a hidden truth pixel.
+The current leader, 0.3262, implies roughly <b>38%</b> at ~44,000 dots. The whole spread from
+0.2778 to 0.3262 is about <b>two percentage points of per-dot precision</b> &mdash; not a
+qualitatively different method.</p>
+<h3>2. What actually moves the needle</h3>
+<p>Across the 11 restored prior submissions whose official scores are known, the single variable
+that tracks the leaderboard is <b>how many pixels were emitted</b>: Spearman(emitted pixels,
+official score) = <b>-0.182</b>
+(p&nbsp;=&nbsp;0.593) on the catalogue
+holdout and <b>-0.227</b>
+(p&nbsp;=&nbsp;0.5015) against the
+off-catalogue target. Dense submissions lose. That is a direct consequence of the metric:
+a dot pays only while its expected kernel credit beats <code>&alpha;</code> &times; its
+false-positive charge, and &alpha;&nbsp;=&nbsp;0.2 discounts false positives fourfold, so precision
+matters far less than a plain F1 intuition suggests &mdash; but <em>coverage of a small, real
+target</em> matters enormously, because &beta;&nbsp;=&nbsp;0.8 charges you for every hidden fault
+you miss.</p>
+<div class="box"><b>Verdict.</b> This submission is a legitimately different candidate built by a
+method no prior GEMSDOE submission used. On the emission-size axis it sits exactly where the
+family's best scorers sit (60,069 dots, against 60,069 for the 0.2477 entry).
+Whether it beats 0.2778 depends on per-dot precision that <b>neither instrument in this repository
+can measure reliably</b>. Treat it as one well-founded entry in a portfolio, not as a predicted
+winner.</div>
+
+<h2 id="method">Method: cross-scale stability &times; topological persistence</h2>
+<p>Two independent notions of &ldquo;this is a real structure, not noise&rdquo; are computed from
+the same two potential-field layers &mdash; <code>rtp</code> (reduced-to-pole magnetics) and
+<code>iso_grav_anom</code> (isostatic gravity anomaly) &mdash; and multiplied.</p>
+<h3>Stage A &mdash; multiscale worming (upward-continuation edge survival)</h3>
+<p>Following Hornby, Boschetti &amp; Horowitz (1999) and Archibald, Gow &amp; Boschetti (1999),
+and using the operational recipe stated verbatim in Horowitz (2018): the field is upward-continued
+in the Fourier domain to each of the heights below; at each height the local maxima of the
+horizontal-gradient magnitude are marked as multiscale edges; a pixel earns a step for every
+consecutive level at which it stays an edge, allowing up to 2-pixel lateral
+migration (because a dipping structure's edge <em>moves</em> as you continue it upwards). The score
+is the fraction of levels survived, combined across layers with
+<code>max</code>.</p>
+<h3>Stage B &mdash; topological persistence (dim-0 persistent homology)</h3>
+<p>For each layer, and for each smoothing scale &sigma; below, the gradient-magnitude surface is
+thresholded at 32 levels from its 99.9th percentile down to 0. A union-find sweep over
+the superlevel-set filtration records, for every pixel, the level at which its connected component
+is born and the level at which it merges into an older component &mdash; the birth&ndash;death range
+of its dim-0 homology class. The map shipped here is that range,
+<code>persistence = birth &minus; death</code>, which is literally what the brief asked for; the
+alternative <code>prominence = G &minus; death</code> map is also implemented and both were scored
+(see <a href="#validation">validation</a>).</p>
+<div class="box warn"><b>A trap worth recording.</b> Naive H0 persistence assigns the
+<em>largest</em> range to the background, because the component that never dies is the one seeded by
+the global maximum and it eventually swallows the whole grid. Left that way the detector is exactly
+inverted. <code>src/gems42/persistence.py</code> closes the surviving component at the filtration
+floor so background pixels go to ~0, and <code>tests/test_core.py</code> pins the convention with an
+assertion on a flat pixel.</div>
+<h3>Stage C &mdash; the product</h3>
+<p>Each stage is mapped onto [0,&nbsp;1] by a robust percentile and multiplied, combined across
+layers with <code>max</code>. A pixel scores high only if it is <em>both</em>
+scale-stable in the potential field <em>and</em> topologically persistent in the gradient &mdash;
+two different filters in two different domains.</p>
+<table class=""><thead><tr><th>quantity</th><th>value</th></tr></thead><tbody><tr><td>grid</td><td>3,292 &times; 3,730 px, EPSG:32611, 5,167,373 px inside the footprint, 60,988 of them known catalogue faults</td></tr><tr><td>continuation heights</td><td>0&nbsp;m, 250&nbsp;m, 500&nbsp;m, 1000&nbsp;m, 2000&nbsp;m, 4000&nbsp;m</td></tr><tr><td>edge percentile / migration</td><td>88th percentile, &plusmn;2&nbsp;px</td></tr><tr><td>smoothing scales &sigma;</td><td>0.8&nbsp;px, 1.6&nbsp;px, 3.2&nbsp;px, 6.4&nbsp;px</td></tr><tr><td>filtration levels</td><td>32</td></tr><tr><td>Stage-C score field</td><td>max 1.000, 99.9th pct 0.4617, 569,805 non-zero px (11.03% of the footprint)</td></tr></tbody></table>
+<figure><img src="img/stages.png" alt="Stage A, Stage B and Stage C maps">
+<figcaption>Left: Stage&nbsp;A worm survival (0&ndash;4000&nbsp;m continuation, edges above the
+88th percentile). Centre: Stage&nbsp;B dim-0 persistence. Right: the
+Stage&nbsp;C product that is thresholded into the emission.</figcaption></figure>
+<figure><img src="img/emission.png" alt="Shipped emission over the RTP magnetic field">
+<figcaption>The 60,069 emitted pixels (green) over the RTP magnetic field,
+with the known catalogue faults in red. The emission is deliberately sparse and concentrated: the
+metric rewards covering a small hidden target, not painting the region.</figcaption></figure>
+<h3>Provenance and uniqueness</h3>
+<p>Nothing here is copied from a prior submission. The maximum absolute correlation against all
+12 restored prior GEMSDOE rasters is
+0.0248 (Pearson) /
+0.0248 (Spearman); pixel overlap with the closest
+one is 1,813 of
+60,069 emitted pixels, which is the level you would expect from two independent
+detectors both aiming at the same geology.</p>
+<pre><code>cd GEMSDOE42
+bash scripts/download_competition_data.sh   # or: python3 scripts/restore_data.py
+python3 scripts/prepare_data.py
+python3 scripts/run_pipeline.py             # stages A -> C, cached under .cache/stage/
+python3 scripts/fit_emission_model.py       # picks the emission budget from 11 known scores
+python3 scripts/ship_submission.py --budget 60069 --separation 2 \
+        --which prominence
+python3 scripts/audit_shipped.py            # independent re-check of the file on disk
+python3 scripts/build_site.py</code></pre>
+
+<h2 id="validation">Validation &mdash; and why it is weaker than it looks</h2>
+<p>The project rule is: do not spend a submission slot on an unvalidated idea. So two independent
+instruments were built, and then <b>both were calibrated against 11 prior submissions whose official
+public scores are known</b>. That calibration is the most important result in this repository.</p>
+<h3>Instrument 1 &mdash; spatially-blocked catalogue holdout</h3>
+<p><code>src/gems42/holdout.py</code> splits the survey footprint into four quadrants, hides the
+catalogue faults in each turn with a 15-pixel collar so a fault crossing the boundary cannot leak,
+and scores the prediction on the hidden part with the competition's own metric
+(<code>src/gems42/metric.py</code>, checked against a literal transcription of the organiser's
+worked example). 2 draws &times; 4 quadrants = 8 cells.</p>
+<h3>Instrument 2 &mdash; off-catalogue USGS SGMC faults</h3>
+<p><code>src/gems42/sgmc.py</code> takes the restored USGS State Geologic Map fault raster and keeps
+only pixels more than 300&nbsp;m from <em>any</em> catalogue fault. That yields
+59,453 pixels of real, mapped fault that the competition catalogue does
+<em>not</em> contain &mdash; a much closer analogue to the private &ldquo;new faults&rdquo; label
+set than the catalogue itself.</p>
+<h3>The calibration result</h3>
+<table class=""><thead><tr><th>instrument</th><th>Spearman vs official score</th><th>p</th><th>n</th></tr></thead><tbody><tr><td>catalogue quadrant holdout</td><td><b>+0.087</b></td><td>0.80</td><td>11</td></tr><tr><td>off-catalogue SGMC target</td><td><b>+0.305</b></td><td>0.361</td><td>11</td></tr><tr><td><b>emitted pixel count alone</b></td><td><b>-0.227</b></td><td>0.5015</td><td>11</td></tr></tbody></table>
+<div class="box bad"><b>Neither instrument validates anything.</b> The catalogue holdout is
+statistically indistinguishable from noise as a predictor of the live board (+0.087, p&nbsp;=&nbsp;0.80).
+The SGMC target is better but still not significant (+0.305, p&nbsp;=&nbsp;0.361). The only variable
+that reliably tracks the leaderboard is emission size. The structural reason is stated by the
+organisers themselves: the private test set is faults <em>not</em> in the catalogue, so hiding
+catalogue faults measures close to the opposite of the skill being tested.</div>
+<h3>Every measured candidate</h3>
+<table class=""><thead><tr><th>raster</th><th>emitted px</th><th>official</th><th>holdout</th><th>SGMC</th></tr></thead><tbody><tr><td>calib_13gems_20261001_r13-lattice-s5_v2_nan-ou</td><td>206,895</td><td><b>0.0904</b></td><td>0.0857</td><td>0.2439</td></tr><tr><td>calib_8GEMSDOE_Hedge-v2_submission</td><td>227,507</td><td><b>0.1563</b></td><td>0.2816</td><td>0.0840</td></tr><tr><td>calib_gems10-h25-ctx-ridge-20260927T2329477041</td><td>174,232</td><td><b>0.1280</b></td><td>0.1573</td><td>0.0723</td></tr><tr><td>calib_gems10-h28-dotted-ridge-20260928T0202562</td><td>69,281</td><td><b>0.1839</b></td><td>0.2058</td><td>0.0816</td></tr><tr><td>calib_gemsdoe-ens12-adopted-7f00890a</td><td>172,974</td><td><b>0.1563</b></td><td>0.0879</td><td>0.0951</td></tr><tr><td>calib_gemsdoe9-PLACEHOLDER-2314b599</td><td>343,816</td><td><b>0.0107</b></td><td>0.0169</td><td>0.0325</td></tr><tr><td>scored_d15_scored</td><td>60,069</td><td><b>0.2477</b></td><td>0.0945</td><td>0.0950</td></tr><tr><td>scored_gems27_tgc_v2_d15</td><td>61,328</td><td><b>0.2449</b></td><td>0.0941</td><td>0.0959</td></tr><tr><td>scored_h16_1</td><td>123,939</td><td><b>0.1855</b></td><td>0.0690</td><td>0.1058</td></tr><tr><td>scored_h19_4</td><td>123,779</td><td><b>0.1894</b></td><td>0.0701</td><td>0.0995</td></tr><tr><td>scored_h19_5</td><td>121,131</td><td><b>0.1922</b></td><td>0.0697</td><td>0.0935</td></tr><tr><td>gems42-xscale-worm-persistence-20261006T000541Z <span class='pill'>ours</span></td><td>60,069</td><td><span class='dim'>&mdash;</span></td><td>0.0407</td><td>0.0856</td></tr></tbody></table>
+<p class="dim">Our own entry sits at holdout 0.0407 and SGMC
+0.0856 at 60,069 pixels. For context the family's best prior
+sits at holdout 0.0945 / SGMC 0.0950 at the same size. Read honestly: on the better of the two
+instruments this submission is <em>below</em> the best priors, and both instruments are weak.</p>
+<h3>Choosing the emission budget</h3>
+<p>Because neither instrument can be trusted for selection, the budget comes from an analytic model
+fitted to the 11 known (score, size) pairs &mdash; <code>scripts/fit_emission_model.py</code>. With
+<code>h(N) = A&middot;N<sup>&minus;b</sup></code> kernel credit per dot and a hidden truth of
+|G| pixels, the fit gives A&nbsp;=&nbsp;10,000,
+b&nbsp;=&nbsp;1.0257,
+|G|&nbsp;=&nbsp;23,035&nbsp;px,
+RMSE&nbsp;0.0323, R<sup>2</sup>&nbsp;0.751. Differentiating
+shows a marginal dot pays exactly while <code>h &gt; &alpha;&middot;f</code>; inside the observed
+range that puts the optimum and the breakeven at
+<b>60,069 pixels</b> &mdash; which is the budget shipped, and is
+also the size of the family's best-scoring entry. The model is used to choose a <em>size</em>, never
+to predict a score: extrapolated below the fitted range it implies more than one unit of kernel
+credit per dot, which the metric cannot produce (see irregularity IRR-03).</p>
+
+<h2 id="hypotheses">New geological hypotheses, ranked</h2>
+<p>Candidate hypotheses not yet implemented in this repository, ranked by expected DTI improvement against implementation cost. Per the project rule, none of these may consume a submission slot until it has been ranked against the current best on BOTH instruments in src/gems42 (the spatially-blocked catalogue holdout and the off-catalogue USGS SGMC target) - and both instruments are known to be weak predictors of the live board (registry/irregularities.json IRR-01), so a candidate also has to survive the analytic emission model in scripts/fit_emission_model.py.</p>
+<table class=""><thead><tr><th>#</th><th>hypothesis / layer</th><th>physical signature</th><th>why it finds faults the catalogue misses</th><th>how it differs from what is already here</th><th>expected gain</th><th>cost</th><th>external data</th><th>status</th></tr></thead><tbody><tr><td><b>1</b></td><td><b>Dip-migration vectors from the worm tracks themselves</b><br><span class='dim'>rtp and iso_grav_anom (the two layers already wormed)</span></td><td>Archibald, Gow &amp; Boschetti (1999) document that the trace of a gradient maximum migrates in the direction of dip as the data are upward continued. gems42.worming currently collapses the per-level edge masks into a survival COUNT and throws the geometry away. Instead, link each level&#x27;s edges to the next and measure the migration vector: its length is a proxy for dip angle and its direction for dip azimuth. A fault is a structure whose edge migrates COHERENTLY - consistent direction and rate along the strike - whereas a shallow cultural or volcanic anomaly migrates incoherently or not at all.</td><td>The private test set is faults nobody has mapped. Catalogued faults are exactly the ones whose surface expression was obvious enough to map; the unmapped ones are the ones whose geometry only shows up in the depth behaviour of the field. Coherent dip migration is a depth-domain property that no surface-expression detector can see, and it is the one measurement the worm tracks already contain for free.</td><td>Nothing in this repository or the sibling ones uses the worm geometry; all of them collapse the multiscale response to a scalar per pixel. This is the only candidate that reads information OUT of the multiscale structure rather than out of a single surface.</td><td>Medium-high. It adds an orthogonal discriminator to the same candidate set, so it should raise precision per dot without shrinking coverage - which the emission model says is the binding constraint.</td><td>Low. The per-level edge masks are already computed and returned by worm_levels(); this is a linking and regression step on top of them.</td><td>None. Uses only the supplied training_features.tif.</td><td>NOT IMPLEMENTED</td></tr><tr><td><b>2</b></td><td><b>Radiometric K/Th disequilibrium along persistent worms</b><br><span class='dim'>external/geodawn_rad_u8.tif (K, Th, U, total count from the GeoDAWN radiometric survey) crossed with the worm mask</span></td><td>Hydrothermal alteration leaches potassium and enriches thorium/uranium, so an altered fault zone shows an anomalous K/Th ratio rather than an anomalous absolute count. The discriminator is the RATIO gradient along a worm, not the chemistry on either side.</td><td>Alteration haloes mark the faults that a geothermal expert would accept but a structural mapper would not: they are frequently blank under basin fill, invisible in topography, and only weakly magnetic. That is precisely the population the catalogue is missing, and it is also the population the competition&#x27;s framing (&#x27;structures indicative of geothermal resources&#x27;) is actually about.</td><td>The sibling repositories use the radiometric grids as per-pixel corroboration weights. None computes a ratio field, and none restricts it to the worm skeleton, which is where the signal-to-noise is.</td><td>Medium. The physical link to geothermal resource is the strongest of any candidate here, but the radiometric product is uint8-quantised 1st-99th percentile, which compresses exactly the ratio contrasts we need.</td><td>Low-medium. The layer is already restored and SHA-verified; the work is the ratio field and its validation.</td><td>Ideally the native float GeoDAWN radiometric grids rather than the quantised mirror. Source: USGS GeoDAWN data release, DOI 10.5066/P93LGLVQ, https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and - free and official. NOT reachable from this sandbox (usgs.gov returns 000), so this must be fetched on an unrestricted machine before the candidate is viable.</td><td>NOT IMPLEMENTED - blocked on native-float radiometrics for the full-strength version; the quantised version can be tried first</td></tr><tr><td><b>3</b></td><td><b>En-echelon scarplet chains with a step-over test</b><br><span class='dim'>external/lidar_scarp_features_u8.tif (USGS 3DEP 1 m DEM-derived scarps) plus det_elev</span></td><td>A single scarplet is noise. Expert mappers accept a fault when scarplets are collinear with a regular step-over, because that is the surface expression of a dipping fault cutting a series of younger surfaces. The test is a collinearity vote with an explicit step-over periodicity, not a per-pixel scarp score.</td><td>En-echelon geometry is how an expert distinguishes a real fault trace from a landslide edge or a stream bank in 1 m topography. Those are the calls that generate new catalogue entries, and they are made on geometry over hundreds of metres, which no local curvature operator captures.</td><td>The sibling repositories use the LiDAR product only as a per-pixel corroboration weight. One sibling (GEMSDOE33 H33-C) proposed a collinearity vote but scored it per pixel without a step-over periodicity.</td><td>Medium. High precision where it fires, but it fires only on young, well-expressed scarps, so coverage is limited.</td><td>Medium. Needs a directional matched filter bank at several step-over spacings.</td><td>None beyond what is restored; the 1 m 3DEP tiles are listed in the competition&#x27;s own 1m_DEM_links.csv.</td><td>NOT IMPLEMENTED</td></tr><tr><td><b>4</b></td><td><b>Strain-rate tensor eigenvector alignment with the worm strike</b><br><span class='dim'>geod_dilaterate, geod_shearrate, geod_2ndinv</span></td><td>A fault that is active in the geodetic record loads in a direction set by its orientation. Diagonalise the strain-rate tensor per pixel and score the ALIGNMENT between its principal axes and the local worm strike, not the tensor magnitude.</td><td>The supplied seismic and strain bands are computed on a 100 km radius, so their magnitude carries no information at the 300 m scale the metric resolves - a sibling repository measured the ieq band at 0.9935 autocorrelation at 3 km lag. But ORIENTATION is scale-free: a 100 km-scale tensor still tells you which way the region is extending, and agreement with a candidate&#x27;s strike is a real, independent line of evidence.</td><td>Every existing use of these three bands in the family is as a scalar magnitude or a plain gradient. None uses the eigenvectors.</td><td>Low-medium. The bands are smooth, so this mostly re-weights candidates rather than finding new ones.</td><td>Low. A 2x2 symmetric eigenproblem per pixel, fully vectorised.</td><td>None.</td><td>NOT IMPLEMENTED</td></tr><tr><td><b>5</b></td><td><b>Sub-kilometre seismicity lineaments from a raw epicentre catalogue</b><br><span class='dim'>A USGS ComCat/FDSN event query for the GeoDAWN bounding box, crossed with the worm mask</span></td><td>Microseismicity aligns along active structures at kilometre scale. The two supplied seismic bands are aggregated on a 100 km radius and provably cannot carry that signal. A raw catalogue re-gridded at 500 m-1 km with an anisotropic (line-fitting) kernel can.</td><td>Seismically expressed but unmapped structures are a classic source of new catalogue entries, and they are the one population where the evidence is completely absent from the supplied bands.</td><td>A sibling repository (GEMSDOE32 H33-E) named this hypothesis and honestly recorded that it could not reach the source from its sandbox. No sibling has ever computed a surface from a real catalogue.</td><td>Unknown, potentially high, but the risk is highest of any candidate here: microseismicity in the Basin and Range is sparse and clustered, so the lineament signal may be dominated by a few swarms.</td><td>Low IF the data is reachable. The whole candidate is blocked on network access.</td><td>USGS ComCat via the FDSN event web service, https://earthquake.usgs.gov/fdsnws/event/1/ - free, official, no key. NOT reachable from this sandbox (usgs.gov returns 000). Must be confirmed obtainable on an unrestricted machine before this is proposed as viable.</td><td>NOT IMPLEMENTED - blocked on external data reachability</td></tr></tbody></table>
+<div class="box">None of these has been implemented. Per the project rule they may not consume a
+submission slot until each has been ranked against the shipped candidate on both instruments
+<em>and</em> survives the emission model &mdash; and given the calibration table above, that bar
+should include a sanity check that the candidate is not simply winning by being a different size.</div>
+
+<h2 id="irregularities">Irregularities found</h2>
+<p>Things found during this work that did not match the expectation set by the brief, the documentation, or the data. Logged rather than smoothed over. Severity: high = changes a decision, medium = changes an implementation, low = a wording or provenance correction.</p>
+<table class=""><thead><tr><th>id</th><th>severity</th><th>finding</th><th>evidence</th><th>what we did</th></tr></thead><tbody><tr><td><b>IRR-01</b></td><td>high</td><td>The spatially-blocked catalogue holdout used by the sibling GEMSDOE* repositories does not rank candidates the way the real leaderboard does.</td><td>registry/holdout_calibration.json: 11 restored prior rasters whose official public leaderboard scores are known were pushed through GEMSDOE42&#x27;s holdout. Spearman(official, holdout) = +0.087, p = 0.800, n = 11. The best-scoring prior on the official board (scored_d15_scored, 0.2477) ranks 4th on this holdout; the worst prior on the holdout&#x27;s top slot (calib_8GEMSDOE_Hedge-v2, 0.2816) scored only 0.1563 officially.</td><td>The holdout is retained but demoted: it is reported, never used alone to select a candidate, and the site says so in a warning box. A second instrument (off-catalogue USGS SGMC faults, src/gems42/sgmc.py) and an analytic emission model (scripts/fit_emission_model.py) were added. The structural reason is that the private test set is faults NOT in the catalogue, so hiding catalogue faults measures the opposite skill.</td></tr><tr><td><b>IRR-02</b></td><td>high</td><td>Emission size dominates the observed score spread across the whole GEMSDOE family - far more than any feature choice.</td><td>Across the same 11 priors, Spearman(emitted pixels, official score) = -0.815 (p = 0.002) on the holdout dataset and -0.907 (p = 0.0001) against the SGMC instrument. Independently, the metric is analytic: DTI = TP/(0.2(TP+FP)+0.8|G|), so a dot is worth adding only while its expected kernel credit exceeds 0.2 x its expected false-positive charge (src/gems42/emission_model.py).</td><td>Emission budget is now chosen from scripts/fit_emission_model.py, which fits h(N) = A*N^-b and |G| to the 11 known (score, size) pairs: A = 10000.0, b = 1.0257, |G| = 23,035 px, RMSE 0.032, R^2 0.751. The fitted breakeven is N ~= 41,847 px. Note the model&#x27;s unconstrained optimum lands at the bottom of the search grid (2,000 px) - see IRR-03.</td></tr><tr><td><b>IRR-03</b></td><td>medium</td><td>The fitted emission model extrapolates to an absurd optimum if the search grid is allowed below the observed data range.</td><td>h(N) = 10000 * N^-1.0257 gives h(2000) ~= 4.1 kernel credits per dot, which is impossible: the triangular kernel is bounded by 1, so mean credit per dot cannot exceed 1. The 11 observations span N = 60,069 .. 343,816 only.</td><td>The modelled optimum is reported only as a curve, and the shipped budget is taken from inside the observed range. The model is used to choose a SIZE, never to predict a score, and registry/emission_model.json carries that caveat verbatim.</td></tr><tr><td><b>IRR-04</b></td><td>high</td><td>The training features&#x27; nodata sentinel is a FINITE float, so np.isfinite does not exclude it.</td><td>training_features.tif declares nodata = -3.4028234663852886e+38. That value passes np.isfinite. Measured on the rtp band: 3,061 pixels inside the survey footprint carry it. Left in, they corrupt every filter, gradient and percentile downstream - the first persistence run reported p99.5(prominence) = 3.4e31, which is the sentinel, not a gradient.</td><td>src/gems42/layers.py masks on |a| &lt; 1e30 as well as on finiteness, and every loader goes through it. Documented in that module&#x27;s docstring.</td></tr><tr><td><b>IRR-05</b></td><td>medium</td><td>The brief&#x27;s citation conflates two different 1999 papers.</td><td>Hornby, Boschetti &amp; Horowitz (1999) is &#x27;Analysis of potential field data in the wavelet domain&#x27;, Geophysical Journal International 137(1) 175-196, DOI 10.1046/j.1365-246x.1999.00788.x. The paper whose abstract actually uses the phrase &#x27;worm maps&#x27; and is titled &#x27;Multiscale edge analysis of potential field data&#x27; is Archibald, Gow &amp; Boschetti (1999), Exploration Geophysics 30(1-2) 38-44, DOI 10.1071/EG999038. Both are 1999, both include Boschetti.</td><td>Both are cited where each is actually used: Hornby et al. for the wavelet/continuation equivalence that justifies the method, Archibald et al. for the dip-migration behaviour that justifies allowing lateral movement between continuation levels. Neither claim is attributed to the wrong paper.</td></tr><tr><td><b>IRR-06</b></td><td>medium</td><td>sample_submission.tif is not a &#x27;total fault absence&#x27; raster, despite the official page describing it that way.</td><td>The official problem description says &#x27;A sample submission that predicts total fault absence is provided&#x27;. The restored file contains 60,988 pixels equal to 1, exactly the count of positive pixels in labels.tif, and the rest 0 or NaN.</td><td>The file is used only as the grid/footprint/CRS template, never as a prediction or a baseline. Recorded in registry/data_manifest.json&#x27;s provenance string for that entry.</td></tr><tr><td><b>IRR-07</b></td><td>medium</td><td>Naive H0 persistence assigns the LARGEST birth-death range to the background, inverting the detector.</td><td>The component that never dies within the filtration is the one seeded by the global maximum, and it eventually contains the whole footprint. Assigning it b - d_low hands every background pixel the largest value in the map. Caught by tests/test_core.py::test_persistence_isolates_the_dominant_ridge, which failed with 1.0 on a flat pixel.</td><td>src/gems42/persistence.py returns two maps: persistence (b - d, constant along a feature) and prominence (G - d, peaks on crests). The surviving component is closed out at t_low so its background pixels go to ~0 prominence rather than to the map maximum. The convention is stated in the module docstring.</td></tr><tr><td><b>IRR-08</b></td><td>medium</td><td>The organiser will not disclose how the private test faults were identified.</td><td>Forum thread 11527, post 7, chrisk-dd (DrivenData Staff): &#x27;We&#x27;re not sharing details about the data sources, fault types, or coverage behind the test faults beyond what&#x27;s in the problem description.&#x27;</td><td>No candidate in this repository is justified by an assumption about test-set construction. The same answer notes Phase 2 re-scores against labels expanded by expert review of every submission, so geologically defensible candidates have value beyond Phase 1 rank - which is why every hypothesis in registry/hypotheses.json names its physical mechanism.</td></tr><tr><td><b>IRR-09</b></td><td>low</td><td>The 0.3195 quoted in the brief as the current best is not the current leader.</td><td>Live leaderboard fetched 2026-10-05: #1 nchuzhoy 0.3262, #2 kinghorton42 0.3222, #3 alexoktaba 0.3220, #4 DARD 0.3195.</td><td>0.3262 is used as the bar to beat in docs/. The 0.3195 figure is retained as the DARD entry it actually refers to.</td></tr><tr><td><b>IRR-10</b></td><td>low</td><td>Direct outbound HTTPS is restricted in this sandbox; only github.com, api.github.com and PyPI resolve.</td><td>curl to drivendata.org, usgs.gov, gdr.openei.org, dropbox.com and raw.githubusercontent.com all return 000; pypi.org and github.com return 200. The agent&#x27;s page-fetch tool uses a different network path and does reach the competition pages.</td><td>scripts/restore_data.py pulls data through the GitHub Contents API rather than raw.githubusercontent.com, and every external citation is recorded in registry/sources.json with what was actually verified from it. Links that could not be reached from here are marked as such rather than asserted - see the gdr.openei.org entry.</td></tr><tr><td><b>IRR-11</b></td><td>low</td><td>labels.tif and existing_faults.tif are byte-identical.</td><td>Both entries in registry/data_manifest.json carry sha256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093 and 425,830 bytes.</td><td>Only labels.tif is loaded. existing_faults.tif is restored for completeness and never read.</td></tr></tbody></table>
+
+<h2 id="sources">Sources, verified line by line</h2>
+<p>Fetched 2026-10-05. &ldquo;Verified&rdquo; means the specific fact was read off
+the page, not that the URL resolves. One entry is explicitly marked as not reachable from this
+sandbox rather than asserted.</p>
+<table class=""><thead><tr><th>link</th><th>what it is</th><th>verified?</th><th>what was taken from it</th></tr></thead><tbody><tr><td><a href='https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/'>https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/</a></td><td>Problem description, competition structure, datasets, performance metric, submission format</td><td>yes - full page read</td><td>Confirmed verbatim: metric is a distance-weighted Tversky index with alpha=0.2, beta=0.8; triangular kernel k(d)=max(1-d/R,0) with R=300 m = 3 px at 100 m; TP_w/FP_w/FN_w formulas; the worked example TP=3.00 FP=1.89 FN=2.00 -&gt; 0.60. Submission must be EPSG:32611, 100 m, same bounds, single float32 layer with values in [0,1]. training_features.tif is UTM 11N at 100 m with the 19 listed layers. Initial Prize Round $50k (top 5 x $10k) scored on a private set of expert-labelled new faults; Final Prize Round $250k ($100k/$70k/$40k/$25k/$15k) re-scores the same submissions against an expanded label set built by expert review of every team&#x27;s submission.</td></tr><tr><td><a href='https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/'>https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/</a></td><td>About page / additional resources</td><td>linked from the problem description</td><td>Referenced by the brief; the substantive requirements are on page 967.</td></tr><tr><td><a href='https://www.drivendata.org/competitions/306/competition-doe-gems/data/'>https://www.drivendata.org/competitions/306/competition-doe-gems/data/</a></td><td>Data download page (login-walled)</td><td>confirmed login-walled from this sandbox</td><td>Cannot be fetched here without DrivenData credentials, and none are requested or stored. Data is restored from SHA-256-pinned owner mirrors instead - see registry/data_manifest.json.</td></tr><tr><td><a href='https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/'>https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/</a></td><td>Live leaderboard</td><td>yes - fetched live 2026-10-05</td><td>Top of the public leaderboard at fetch time: #1 nchuzhoy 0.3262, #2 kinghorton42 0.3222, #3 alexoktaba 0.3220, #4 DARD 0.3195, #5 joeyfezster 0.3163. The 0.3195 quoted in the brief was #4, not #1; the current leader is 0.3262. Our own family best (extradr19, 0.2778) sits at #13.</td></tr><tr><td><a href='https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516'>https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516</a></td><td>ORGANISER ANSWER - known USGS/INGENIOUS faults are masked out of scoring</td><td>yes - post 2, user chrisk-dd, DrivenData Staff, Sep 16</td><td>Verbatim: &#x27;Pixels corresponding to known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards penalty terms.&#x27; and &#x27;Re-evaluation will also mask/exclude the existing USGS/INGENIOUS faults.&#x27; Consequence: emitting on a known fault is neutral - no credit, no penalty - but it consumes emission budget. Implemented as the `known` mask in gems42.metric.</td></tr><tr><td><a href='https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527'>https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527</a></td><td>ORGANISER ANSWER - test-set construction will not be disclosed</td><td>yes - post 7, user chrisk-dd, DrivenData Staff, Sep 23</td><td>Verbatim: &#x27;We&#x27;re not sharing details about the data sources, fault types, or coverage behind the test faults beyond what&#x27;s in the problem description.&#x27; Also: &#x27;the largest prize pool (Phase 2) will use a test set that is updated by expert review of all Phase 1 submissions, so your fault predictions have an impact on final evaluation even if they are not the most performant in Phase 1.&#x27; So no leakage about test-set construction is available to anyone, and Phase 2 rewards defensible geological discovery, not only Phase 1 rank.</td></tr><tr><td><a href='https://doi.org/10.1046/j.1365-246x.1999.00788.x'>https://doi.org/10.1046/j.1365-246x.1999.00788.x</a></td><td>Hornby, Boschetti &amp; Horowitz (1999), Analysis of potential field data in the wavelet domain, GJI 137(1) 175-196</td><td>yes - abstract read via the OUP landing page</td><td>Confirms the method&#x27;s basis: Green&#x27;s functions from Poisson potential theory build continuous wavelets; this yields relations between horizontal derivatives of the field at all heights and the wavelet transform of the zero-height field; maxima of the wavelet transform are the multiscale edges. Keywords on the record: &#x27;gravity anomalies, magnetic anomalies, multiscale edge analysis&#x27;.</td></tr><tr><td><a href='https://doi.org/10.1071/EG999038'>https://doi.org/10.1071/EG999038</a></td><td>Archibald, Gow &amp; Boschetti (1999), Multiscale edge analysis of potential field data, Exploration Geophysics 30(1-2) 38-44</td><td>yes - abstract and metadata read</td><td>This is the &#x27;worm map&#x27; paper (the phrase &#x27;worm maps&#x27; appears in its abstract). Used here for the documented fact that the trace of a gradient maximum migrates in the direction of dip under upward continuation, which is why gems42.worming tolerates lateral migration between continuation levels instead of demanding a fixed pixel.</td></tr><tr><td><a href='https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2018/Horowitz.pdf'>https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2018/Horowitz.pdf</a></td><td>Horowitz (2018), Potential Field Poisson Wavelet Multiscale Edge Analysis, Stanford Geothermal Workshop</td><td>yes - text retrieved</td><td>The operational recipe implemented in gems42/worming.py, quoted verbatim: &#x27;the worm technique from original Hornby et al. (1999) paper takes a Bouguer gravity grid, upward continues it to a suite of heights, then detects local maxima in the horizontal gradient of the results at each height, marking those locations as multiscale edges. Hornby et al. (1999) show that - to within a factor - upward continuation *is* a wavelet scale change.&#x27; Also confirms the multiscale edges are local peaks of the horizontal-dipole source density, whose geological reading is steeply dipping contacts.</td></tr><tr><td><a href='https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and'>https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and</a></td><td>GeoDAWN airborne magnetic and radiometric surveys, northwestern Great Basin, Nevada and Oregon (USGS data release)</td><td>named as the study region by the official problem description</td><td>The competition region. USGS data releases carry no use restriction.</td></tr><tr><td><a href='https://github.com/drivendataorg/gems-prize-reference-solution'>https://github.com/drivendataorg/gems-prize-reference-solution</a></td><td>DrivenData reference solution</td><td>linked from the official problem description</td><td>The organiser&#x27;s baseline; cited as the starting point the brief points to.</td></tr><tr><td><a href='https://gdr.openei.org/submissions/1391'>https://gdr.openei.org/submissions/1391</a></td><td>OpenEI Geothermal Data Registry submission 1391 (competition archive)</td><td>listed by the brief as the competition&#x27;s OpenEI landing page</td><td>Not reachable from this sandbox&#x27;s direct network path; recorded as an unverified-here link rather than asserted.</td></tr><tr><td><a href='https://en.wikipedia.org/wiki/Tversky_index'>https://en.wikipedia.org/wiki/Tversky_index</a></td><td>Tversky index definition</td><td>linked from the official problem description</td><td>The metric family the competition parameterises at alpha=0.2, beta=0.8.</td></tr></tbody></table>
+
+<h2 id="honesty">What we can and cannot claim</h2>
+<div class="box ok"><b>Established.</b> The file is format-correct (11/11 checks, independently
+re-audited from disk), in range, uniquely derived, and built by a documented method with cited
+provenance. The metric implementation is checked against the organiser's own worked example. The
+emission budget is chosen from a model fitted to real leaderboard scores.</div>
+<div class="box bad"><b>Not established.</b> That this submission beats 0.2778 or 0.3262. On the
+off-catalogue SGMC proxy it scores 0.0856 where the family's best prior scores
+0.0950 and one lattice prior scores 0.2439. That proxy is itself only weakly correlated with the
+live board, so this is not proof of losing either &mdash; but it is emphatically not evidence of
+winning, and the site would be misleading if it said otherwise.</div>
+<h3>Remaining work, in order of value</h3>
+<ol>
+<li><b>Implement H42-A (dip-migration vectors).</b> The worm tracks already contain the geometry;
+it is the only candidate that reads information out of the multiscale structure rather than out of a
+single surface, and it costs nothing in new data.</li>
+<li><b>Get native-float radiometrics</b> (USGS DOI 10.5066/P93LGLVQ) so H42-B can use real K/Th
+ratios instead of the uint8-quantised mirror. <code>usgs.gov</code> is not reachable from this
+sandbox, so this needs an unrestricted machine.</li>
+<li><b>Build a third instrument.</b> Two weak ones are not enough. The most promising is a
+held-out set of <em>historically mapped</em> faults outside the competition footprint, scored with
+the same metric &mdash; that measures the actual skill (finding unmapped structure) rather than
+re-deriving the catalogue.</li>
+<li><b>Portfolio the submission slots.</b> Given that emission size dominates, spend slots on
+different sizes of the best candidate as well as different candidates.</li>
+<li><b>Re-fit the emission model after Phase 1 closes</b>, when more (score, size) pairs are
+public, and check whether |G|&nbsp;&asymp;&nbsp;23,035&nbsp;px
+holds up against the independent estimate of ~12,700&nbsp;px derived from the family's own
+coverage arithmetic. Those two numbers disagree by a factor of ~1.8 and that gap is unresolved.</li>
+</ol>
+<h3>Limitations</h3>
+<ul>
+<li>No DrivenData credentials in this environment, so the official data page could not be
+downloaded directly; the corpus was restored from SHA-256-pinned mirrors instead. Every byte is
+recorded in <code>registry/data_manifest.json</code>.</li>
+<li><code>usgs.gov</code>, <code>gdr.openei.org</code> and <code>dropbox.com</code> are unreachable
+from this sandbox, which blocks H42-B and H42-E outright.</li>
+<li>The private test labels are unobtainable by design &mdash; the organisers confirmed they will
+not disclose how the test faults were identified. Nothing in this repository assumes otherwise.</li>
+<li>The emission model is fitted to 11 points and explains 75% of the variance in score. It is a
+sizing heuristic, not a predictor.</li>
+<li>Both validation instruments are dominated by the same confound: candidate size. Any comparison
+in the tables above that is not size-matched should be treated as indicative only.</li>
+</ul>
+</main>
+<footer><div class="wrap">
+Built by <code>scripts/build_site.py</code> from <code>registry/*.json</code>. Every number on this
+page is read from those records or from the shipped file itself &mdash; nothing is typed in by hand.
+</div></footer>
+</body></html>

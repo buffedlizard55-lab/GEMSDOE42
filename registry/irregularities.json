@@ -1,0 +1,83 @@
+{
+ "schema_version": 1,
+ "note": "Things found during this work that did not match the expectation set by the brief, the documentation, or the data. Logged rather than smoothed over. Severity: high = changes a decision, medium = changes an implementation, low = a wording or provenance correction.",
+ "irregularities": [
+  {
+   "id": "IRR-01",
+   "severity": "high",
+   "finding": "The spatially-blocked catalogue holdout used by the sibling GEMSDOE* repositories does not rank candidates the way the real leaderboard does.",
+   "evidence": "registry/holdout_calibration.json: 11 restored prior rasters whose official public leaderboard scores are known were pushed through GEMSDOE42's holdout. Spearman(official, holdout) = +0.087, p = 0.800, n = 11. The best-scoring prior on the official board (scored_d15_scored, 0.2477) ranks 4th on this holdout; the worst prior on the holdout's top slot (calib_8GEMSDOE_Hedge-v2, 0.2816) scored only 0.1563 officially.",
+   "action": "The holdout is retained but demoted: it is reported, never used alone to select a candidate, and the site says so in a warning box. A second instrument (off-catalogue USGS SGMC faults, src/gems42/sgmc.py) and an analytic emission model (scripts/fit_emission_model.py) were added. The structural reason is that the private test set is faults NOT in the catalogue, so hiding catalogue faults measures the opposite skill."
+  },
+  {
+   "id": "IRR-02",
+   "severity": "high",
+   "finding": "Emission size dominates the observed score spread across the whole GEMSDOE family - far more than any feature choice.",
+   "evidence": "Across the same 11 priors, Spearman(emitted pixels, official score) = -0.815 (p = 0.002) on the holdout dataset and -0.907 (p = 0.0001) against the SGMC instrument. Independently, the metric is analytic: DTI = TP/(0.2(TP+FP)+0.8|G|), so a dot is worth adding only while its expected kernel credit exceeds 0.2 x its expected false-positive charge (src/gems42/emission_model.py).",
+   "action": "Emission budget is now chosen from scripts/fit_emission_model.py, which fits h(N) = A*N^-b and |G| to the 11 known (score, size) pairs: A = 10000.0, b = 1.0257, |G| = 23,035 px, RMSE 0.032, R^2 0.751. The fitted breakeven is N ~= 41,847 px. Note the model's unconstrained optimum lands at the bottom of the search grid (2,000 px) - see IRR-03."
+  },
+  {
+   "id": "IRR-03",
+   "severity": "medium",
+   "finding": "The fitted emission model extrapolates to an absurd optimum if the search grid is allowed below the observed data range.",
+   "evidence": "h(N) = 10000 * N^-1.0257 gives h(2000) ~= 4.1 kernel credits per dot, which is impossible: the triangular kernel is bounded by 1, so mean credit per dot cannot exceed 1. The 11 observations span N = 60,069 .. 343,816 only.",
+   "action": "The modelled optimum is reported only as a curve, and the shipped budget is taken from inside the observed range. The model is used to choose a SIZE, never to predict a score, and registry/emission_model.json carries that caveat verbatim."
+  },
+  {
+   "id": "IRR-04",
+   "severity": "high",
+   "finding": "The training features' nodata sentinel is a FINITE float, so np.isfinite does not exclude it.",
+   "evidence": "training_features.tif declares nodata = -3.4028234663852886e+38. That value passes np.isfinite. Measured on the rtp band: 3,061 pixels inside the survey footprint carry it. Left in, they corrupt every filter, gradient and percentile downstream - the first persistence run reported p99.5(prominence) = 3.4e31, which is the sentinel, not a gradient.",
+   "action": "src/gems42/layers.py masks on |a| < 1e30 as well as on finiteness, and every loader goes through it. Documented in that module's docstring."
+  },
+  {
+   "id": "IRR-05",
+   "severity": "medium",
+   "finding": "The brief's citation conflates two different 1999 papers.",
+   "evidence": "Hornby, Boschetti & Horowitz (1999) is 'Analysis of potential field data in the wavelet domain', Geophysical Journal International 137(1) 175-196, DOI 10.1046/j.1365-246x.1999.00788.x. The paper whose abstract actually uses the phrase 'worm maps' and is titled 'Multiscale edge analysis of potential field data' is Archibald, Gow & Boschetti (1999), Exploration Geophysics 30(1-2) 38-44, DOI 10.1071/EG999038. Both are 1999, both include Boschetti.",
+   "action": "Both are cited where each is actually used: Hornby et al. for the wavelet/continuation equivalence that justifies the method, Archibald et al. for the dip-migration behaviour that justifies allowing lateral movement between continuation levels. Neither claim is attributed to the wrong paper."
+  },
+  {
+   "id": "IRR-06",
+   "severity": "medium",
+   "finding": "sample_submission.tif is not a 'total fault absence' raster, despite the official page describing it that way.",
+   "evidence": "The official problem description says 'A sample submission that predicts total fault absence is provided'. The restored file contains 60,988 pixels equal to 1, exactly the count of positive pixels in labels.tif, and the rest 0 or NaN.",
+   "action": "The file is used only as the grid/footprint/CRS template, never as a prediction or a baseline. Recorded in registry/data_manifest.json's provenance string for that entry."
+  },
+  {
+   "id": "IRR-07",
+   "severity": "medium",
+   "finding": "Naive H0 persistence assigns the LARGEST birth-death range to the background, inverting the detector.",
+   "evidence": "The component that never dies within the filtration is the one seeded by the global maximum, and it eventually contains the whole footprint. Assigning it b - d_low hands every background pixel the largest value in the map. Caught by tests/test_core.py::test_persistence_isolates_the_dominant_ridge, which failed with 1.0 on a flat pixel.",
+   "action": "src/gems42/persistence.py returns two maps: persistence (b - d, constant along a feature) and prominence (G - d, peaks on crests). The surviving component is closed out at t_low so its background pixels go to ~0 prominence rather than to the map maximum. The convention is stated in the module docstring."
+  },
+  {
+   "id": "IRR-08",
+   "severity": "medium",
+   "finding": "The organiser will not disclose how the private test faults were identified.",
+   "evidence": "Forum thread 11527, post 7, chrisk-dd (DrivenData Staff): 'We're not sharing details about the data sources, fault types, or coverage behind the test faults beyond what's in the problem description.'",
+   "action": "No candidate in this repository is justified by an assumption about test-set construction. The same answer notes Phase 2 re-scores against labels expanded by expert review of every submission, so geologically defensible candidates have value beyond Phase 1 rank - which is why every hypothesis in registry/hypotheses.json names its physical mechanism."
+  },
+  {
+   "id": "IRR-09",
+   "severity": "low",
+   "finding": "The 0.3195 quoted in the brief as the current best is not the current leader.",
+   "evidence": "Live leaderboard fetched 2026-10-05: #1 nchuzhoy 0.3262, #2 kinghorton42 0.3222, #3 alexoktaba 0.3220, #4 DARD 0.3195.",
+   "action": "0.3262 is used as the bar to beat in docs/. The 0.3195 figure is retained as the DARD entry it actually refers to."
+  },
+  {
+   "id": "IRR-10",
+   "severity": "low",
+   "finding": "Direct outbound HTTPS is restricted in this sandbox; only github.com, api.github.com and PyPI resolve.",
+   "evidence": "curl to drivendata.org, usgs.gov, gdr.openei.org, dropbox.com and raw.githubusercontent.com all return 000; pypi.org and github.com return 200. The agent's page-fetch tool uses a different network path and does reach the competition pages.",
+   "action": "scripts/restore_data.py pulls data through the GitHub Contents API rather than raw.githubusercontent.com, and every external citation is recorded in registry/sources.json with what was actually verified from it. Links that could not be reached from here are marked as such rather than asserted - see the gdr.openei.org entry."
+  },
+  {
+   "id": "IRR-11",
+   "severity": "low",
+   "finding": "labels.tif and existing_faults.tif are byte-identical.",
+   "evidence": "Both entries in registry/data_manifest.json carry sha256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093 and 425,830 bytes.",
+   "action": "Only labels.tif is loaded. existing_faults.tif is restored for completeness and never read."
+  }
+ ]
+}

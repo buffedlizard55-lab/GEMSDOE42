@@ -1,0 +1,73 @@
+{
+ "schema_version": 1,
+ "generated_utc": "2026-10-05",
+ "note": "Candidate hypotheses not yet implemented in this repository, ranked by expected DTI improvement against implementation cost. Per the project rule, none of these may consume a submission slot until it has been ranked against the current best on BOTH instruments in src/gems42 (the spatially-blocked catalogue holdout and the off-catalogue USGS SGMC target) - and both instruments are known to be weak predictors of the live board (registry/irregularities.json IRR-01), so a candidate also has to survive the analytic emission model in scripts/fit_emission_model.py.",
+ "ranking_rubric": "Rank 1 = best expected gain per unit of work. 'External data' names the specific free official source and whether it was confirmed reachable from this sandbox.",
+ "hypotheses": [
+  {
+   "id": "H42-A",
+   "rank": 1,
+   "title": "Dip-migration vectors from the worm tracks themselves",
+   "layers": "rtp and iso_grav_anom (the two layers already wormed)",
+   "signature": "Archibald, Gow & Boschetti (1999) document that the trace of a gradient maximum migrates in the direction of dip as the data are upward continued. gems42.worming currently collapses the per-level edge masks into a survival COUNT and throws the geometry away. Instead, link each level's edges to the next and measure the migration vector: its length is a proxy for dip angle and its direction for dip azimuth. A fault is a structure whose edge migrates COHERENTLY - consistent direction and rate along the strike - whereas a shallow cultural or volcanic anomaly migrates incoherently or not at all.",
+   "why_new": "The private test set is faults nobody has mapped. Catalogued faults are exactly the ones whose surface expression was obvious enough to map; the unmapped ones are the ones whose geometry only shows up in the depth behaviour of the field. Coherent dip migration is a depth-domain property that no surface-expression detector can see, and it is the one measurement the worm tracks already contain for free.",
+   "novelty": "Nothing in this repository or the sibling ones uses the worm geometry; all of them collapse the multiscale response to a scalar per pixel. This is the only candidate that reads information OUT of the multiscale structure rather than out of a single surface.",
+   "expected_gain": "Medium-high. It adds an orthogonal discriminator to the same candidate set, so it should raise precision per dot without shrinking coverage - which the emission model says is the binding constraint.",
+   "cost": "Low. The per-level edge masks are already computed and returned by worm_levels(); this is a linking and regression step on top of them.",
+   "external_data": "None. Uses only the supplied training_features.tif.",
+   "status": "NOT IMPLEMENTED"
+  },
+  {
+   "id": "H42-B",
+   "rank": 2,
+   "title": "Radiometric K/Th disequilibrium along persistent worms",
+   "layers": "external/geodawn_rad_u8.tif (K, Th, U, total count from the GeoDAWN radiometric survey) crossed with the worm mask",
+   "signature": "Hydrothermal alteration leaches potassium and enriches thorium/uranium, so an altered fault zone shows an anomalous K/Th ratio rather than an anomalous absolute count. The discriminator is the RATIO gradient along a worm, not the chemistry on either side.",
+   "why_new": "Alteration haloes mark the faults that a geothermal expert would accept but a structural mapper would not: they are frequently blank under basin fill, invisible in topography, and only weakly magnetic. That is precisely the population the catalogue is missing, and it is also the population the competition's framing ('structures indicative of geothermal resources') is actually about.",
+   "novelty": "The sibling repositories use the radiometric grids as per-pixel corroboration weights. None computes a ratio field, and none restricts it to the worm skeleton, which is where the signal-to-noise is.",
+   "expected_gain": "Medium. The physical link to geothermal resource is the strongest of any candidate here, but the radiometric product is uint8-quantised 1st-99th percentile, which compresses exactly the ratio contrasts we need.",
+   "cost": "Low-medium. The layer is already restored and SHA-verified; the work is the ratio field and its validation.",
+   "external_data": "Ideally the native float GeoDAWN radiometric grids rather than the quantised mirror. Source: USGS GeoDAWN data release, DOI 10.5066/P93LGLVQ, https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and - free and official. NOT reachable from this sandbox (usgs.gov returns 000), so this must be fetched on an unrestricted machine before the candidate is viable.",
+   "status": "NOT IMPLEMENTED - blocked on native-float radiometrics for the full-strength version; the quantised version can be tried first"
+  },
+  {
+   "id": "H42-C",
+   "rank": 3,
+   "title": "En-echelon scarplet chains with a step-over test",
+   "layers": "external/lidar_scarp_features_u8.tif (USGS 3DEP 1 m DEM-derived scarps) plus det_elev",
+   "signature": "A single scarplet is noise. Expert mappers accept a fault when scarplets are collinear with a regular step-over, because that is the surface expression of a dipping fault cutting a series of younger surfaces. The test is a collinearity vote with an explicit step-over periodicity, not a per-pixel scarp score.",
+   "why_new": "En-echelon geometry is how an expert distinguishes a real fault trace from a landslide edge or a stream bank in 1 m topography. Those are the calls that generate new catalogue entries, and they are made on geometry over hundreds of metres, which no local curvature operator captures.",
+   "novelty": "The sibling repositories use the LiDAR product only as a per-pixel corroboration weight. One sibling (GEMSDOE33 H33-C) proposed a collinearity vote but scored it per pixel without a step-over periodicity.",
+   "expected_gain": "Medium. High precision where it fires, but it fires only on young, well-expressed scarps, so coverage is limited.",
+   "cost": "Medium. Needs a directional matched filter bank at several step-over spacings.",
+   "external_data": "None beyond what is restored; the 1 m 3DEP tiles are listed in the competition's own 1m_DEM_links.csv.",
+   "status": "NOT IMPLEMENTED"
+  },
+  {
+   "id": "H42-D",
+   "rank": 4,
+   "title": "Strain-rate tensor eigenvector alignment with the worm strike",
+   "layers": "geod_dilaterate, geod_shearrate, geod_2ndinv",
+   "signature": "A fault that is active in the geodetic record loads in a direction set by its orientation. Diagonalise the strain-rate tensor per pixel and score the ALIGNMENT between its principal axes and the local worm strike, not the tensor magnitude.",
+   "why_new": "The supplied seismic and strain bands are computed on a 100 km radius, so their magnitude carries no information at the 300 m scale the metric resolves - a sibling repository measured the ieq band at 0.9935 autocorrelation at 3 km lag. But ORIENTATION is scale-free: a 100 km-scale tensor still tells you which way the region is extending, and agreement with a candidate's strike is a real, independent line of evidence.",
+   "novelty": "Every existing use of these three bands in the family is as a scalar magnitude or a plain gradient. None uses the eigenvectors.",
+   "expected_gain": "Low-medium. The bands are smooth, so this mostly re-weights candidates rather than finding new ones.",
+   "cost": "Low. A 2x2 symmetric eigenproblem per pixel, fully vectorised.",
+   "external_data": "None.",
+   "status": "NOT IMPLEMENTED"
+  },
+  {
+   "id": "H42-E",
+   "rank": 5,
+   "title": "Sub-kilometre seismicity lineaments from a raw epicentre catalogue",
+   "layers": "A USGS ComCat/FDSN event query for the GeoDAWN bounding box, crossed with the worm mask",
+   "signature": "Microseismicity aligns along active structures at kilometre scale. The two supplied seismic bands are aggregated on a 100 km radius and provably cannot carry that signal. A raw catalogue re-gridded at 500 m-1 km with an anisotropic (line-fitting) kernel can.",
+   "why_new": "Seismically expressed but unmapped structures are a classic source of new catalogue entries, and they are the one population where the evidence is completely absent from the supplied bands.",
+   "novelty": "A sibling repository (GEMSDOE32 H33-E) named this hypothesis and honestly recorded that it could not reach the source from its sandbox. No sibling has ever computed a surface from a real catalogue.",
+   "expected_gain": "Unknown, potentially high, but the risk is highest of any candidate here: microseismicity in the Basin and Range is sparse and clustered, so the lineament signal may be dominated by a few swarms.",
+   "cost": "Low IF the data is reachable. The whole candidate is blocked on network access.",
+   "external_data": "USGS ComCat via the FDSN event web service, https://earthquake.usgs.gov/fdsnws/event/1/ - free, official, no key. NOT reachable from this sandbox (usgs.gov returns 000). Must be confirmed obtainable on an unrestricted machine before this is proposed as viable.",
+   "status": "NOT IMPLEMENTED - blocked on external data reachability"
+  }
+ ]
+}

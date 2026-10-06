@@ -1,0 +1,19 @@
+# --- restored / cached data (large; restored by scripts/restore_data.py) -----------------------
+# 694 MB of competition rasters and stage caches. registry/data_manifest.json pins every byte by
+# SHA-256, so nothing is lost by excluding them.
+.cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# OS / editor
+.DS_Store
+
+# NOTE: what is deliberately NOT ignored
+#   registry/*.json    every machine-readable result; the site is generated from these
+#   docs/downloads/*   the submission files themselves (390 KB + 349 KB + 280 KB zip)
+#   docs/img/*.png     the site's preview figures (~1.4 MB)
+#   data/restore_receipt.json  provenance of the restore
