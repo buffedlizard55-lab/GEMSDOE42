@@ -4,10 +4,24 @@
 /artifacts/
 /build/
 /dist/
+/work/
+
+# Restored corpus + stage caches (694 MB). registry/data_manifest.json pins every byte by
+# SHA-256, so nothing is lost by excluding them; scripts/restore_data.py rebuilds the tree.
+.cache/
+*.npy
+
+# Rasters are ignored globally, but the SUBMISSION FILES and the site's preview figures are the
+# deliverable and must be tracked - a global `*.tif` makes the published download link dead.
 *.tif
 *.tiff
+!docs/downloads/*.tif
+!docs/downloads/*.zip
+!docs/img/*.png
 *.aux.xml
 *.ovr
+
+# Python
 *.py[cod]
 __pycache__/
 .venv/
@@ -18,7 +32,10 @@ __pycache__/
 .coverage
 htmlcov/
 
-# Local analysis outputs and OS/editor files
-/work/
-*.npy
+# OS / editor
 .DS_Store
+
+# NOTE: what is deliberately NOT ignored
+#   registry/*.json  every machine-readable result; the site is generated from these
+#   docs/downloads/  the submission files themselves (390 KB + 349 KB + 280 KB zip)
+#   docs/img/        the site preview figures (~1.4 MB)

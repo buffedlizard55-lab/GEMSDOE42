@@ -1,0 +1,85 @@
+{
+ "schema_version": 1,
+ "note": "Every external claim used anywhere in GEMSDOE42, with the date it was fetched and what was actually confirmed. 'Verified' means the specific fact was read off the page, not that the URL merely resolves.",
+ "fetched_utc": "2026-10-05",
+ "sources": [
+  {
+   "what": "Problem description, competition structure, datasets, performance metric, submission format",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+   "verified": "yes - full page read",
+   "note": "Confirmed verbatim: metric is a distance-weighted Tversky index with alpha=0.2, beta=0.8; triangular kernel k(d)=max(1-d/R,0) with R=300 m = 3 px at 100 m; TP_w/FP_w/FN_w formulas; the worked example TP=3.00 FP=1.89 FN=2.00 -> 0.60. Submission must be EPSG:32611, 100 m, same bounds, single float32 layer with values in [0,1]. training_features.tif is UTM 11N at 100 m with the 19 listed layers. Initial Prize Round $50k (top 5 x $10k) scored on a private set of expert-labelled new faults; Final Prize Round $250k ($100k/$70k/$40k/$25k/$15k) re-scores the same submissions against an expanded label set built by expert review of every team's submission."
+  },
+  {
+   "what": "About page / additional resources",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+   "verified": "linked from the problem description",
+   "note": "Referenced by the brief; the substantive requirements are on page 967."
+  },
+  {
+   "what": "Data download page (login-walled)",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+   "verified": "confirmed login-walled from this sandbox",
+   "note": "Cannot be fetched here without DrivenData credentials, and none are requested or stored. Data is restored from SHA-256-pinned owner mirrors instead - see registry/data_manifest.json."
+  },
+  {
+   "what": "Live leaderboard",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+   "verified": "yes - fetched live 2026-10-05",
+   "note": "Top of the public leaderboard at fetch time: #1 nchuzhoy 0.3262, #2 kinghorton42 0.3222, #3 alexoktaba 0.3220, #4 DARD 0.3195, #5 joeyfezster 0.3163. The 0.3195 quoted in the brief was #4, not #1; the current leader is 0.3262. Our own family best (extradr19, 0.2778) sits at #13."
+  },
+  {
+   "what": "ORGANISER ANSWER - known USGS/INGENIOUS faults are masked out of scoring",
+   "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+   "verified": "yes - posts 2 and 4, user chrisk-dd, DrivenData Staff",
+   "note": "Verbatim, post 2 (Sep 16): 'Pixels corresponding to known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards penalty terms.' and 'Re-evaluation will also mask/exclude the existing USGS/INGENIOUS faults.'  Verbatim, post 4 (Sep 21): 'The mask is indeed pixel-exact - it is identical to the provided set of training fault labels.'  The same post notes that new-fault ground truth may lie within 300 m of a known trace and that finding those is 'one outcome we are aiming for'.  Consequence: emitting on a known fault is neutral - no credit, no penalty - but it consumes emission budget, and predictions near a known trace ARE fully penalised.  Implemented as the pixel-exact `known` mask in gems42.metric and as exclude=labels in the emission selector."
+  },
+  {
+   "what": "ORGANISER ANSWER - test-set construction will not be disclosed",
+   "url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527",
+   "verified": "yes - post 7, user chrisk-dd, DrivenData Staff, Sep 23",
+   "note": "Verbatim: 'We're not sharing details about the data sources, fault types, or coverage behind the test faults beyond what's in the problem description.' Also: 'the largest prize pool (Phase 2) will use a test set that is updated by expert review of all Phase 1 submissions, so your fault predictions have an impact on final evaluation even if they are not the most performant in Phase 1.' So no leakage about test-set construction is available to anyone, and Phase 2 rewards defensible geological discovery, not only Phase 1 rank."
+  },
+  {
+   "what": "Hornby, Boschetti & Horowitz (1999), Analysis of potential field data in the wavelet domain, GJI 137(1) 175-196",
+   "url": "https://doi.org/10.1046/j.1365-246x.1999.00788.x",
+   "verified": "yes - abstract read via the OUP landing page",
+   "note": "Confirms the method's basis: Green's functions from Poisson potential theory build continuous wavelets; this yields relations between horizontal derivatives of the field at all heights and the wavelet transform of the zero-height field; maxima of the wavelet transform are the multiscale edges. Keywords on the record: 'gravity anomalies, magnetic anomalies, multiscale edge analysis'."
+  },
+  {
+   "what": "Archibald, Gow & Boschetti (1999), Multiscale edge analysis of potential field data, Exploration Geophysics 30(1-2) 38-44",
+   "url": "https://doi.org/10.1071/EG999038",
+   "verified": "yes - abstract and metadata read",
+   "note": "This is the 'worm map' paper (the phrase 'worm maps' appears in its abstract). Used here for the documented fact that the trace of a gradient maximum migrates in the direction of dip under upward continuation, which is why gems42.worming tolerates lateral migration between continuation levels instead of demanding a fixed pixel."
+  },
+  {
+   "what": "Horowitz (2018), Potential Field Poisson Wavelet Multiscale Edge Analysis, Stanford Geothermal Workshop",
+   "url": "https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2018/Horowitz.pdf",
+   "verified": "yes - text retrieved",
+   "note": "The operational recipe implemented in gems42/worming.py, quoted verbatim: 'the worm technique from original Hornby et al. (1999) paper takes a Bouguer gravity grid, upward continues it to a suite of heights, then detects local maxima in the horizontal gradient of the results at each height, marking those locations as multiscale edges. Hornby et al. (1999) show that - to within a factor - upward continuation *is* a wavelet scale change.' Also confirms the multiscale edges are local peaks of the horizontal-dipole source density, whose geological reading is steeply dipping contacts."
+  },
+  {
+   "what": "GeoDAWN airborne magnetic and radiometric surveys, northwestern Great Basin, Nevada and Oregon (USGS data release)",
+   "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+   "verified": "named as the study region by the official problem description",
+   "note": "The competition region. USGS data releases carry no use restriction."
+  },
+  {
+   "what": "DrivenData reference solution",
+   "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+   "verified": "linked from the official problem description",
+   "note": "The organiser's baseline; cited as the starting point the brief points to."
+  },
+  {
+   "what": "OpenEI Geothermal Data Registry submission 1391 (competition archive)",
+   "url": "https://gdr.openei.org/submissions/1391",
+   "verified": "listed by the brief as the competition's OpenEI landing page",
+   "note": "Not reachable from this sandbox's direct network path; recorded as an unverified-here link rather than asserted."
+  },
+  {
+   "what": "Tversky index definition",
+   "url": "https://en.wikipedia.org/wiki/Tversky_index",
+   "verified": "linked from the official problem description",
+   "note": "The metric family the competition parameterises at alpha=0.2, beta=0.8."
+  }
+ ]
+}

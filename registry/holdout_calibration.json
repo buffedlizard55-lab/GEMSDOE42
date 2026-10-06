@@ -1,0 +1,178 @@
+{
+ "n_priors": 11,
+ "spearman_official_vs_holdout": {
+  "rho": 0.086560589039859,
+  "p": 0.8002206347159756
+ },
+ "spearman_official_vs_sgmc": {
+  "rho": 0.3052399718773975,
+  "p": 0.36136637559800316
+ },
+ "spearman_size_vs_official": {
+  "holdout": {
+   "rho": -0.18181818181818182,
+   "p": 0.5926152128455
+  },
+  "sgmc": {
+   "rho": -0.22727272727272727,
+   "p": 0.501535667604937
+  },
+  "official": {
+   "rho": -0.9066082746806284,
+   "p": 0.00011876621411541871
+  }
+ },
+ "spearman_holdout_vs_sgmc": {
+  "rho": -0.28181818181818186,
+  "p": 0.40114489796047825
+ },
+ "sgmc_truth_px": 59453,
+ "priors": [
+  {
+   "id": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+   "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "official_score": 0.0904,
+   "emitted_px": 206895,
+   "provenance": "calibration raster copied unchanged from the owner siblings",
+   "holdout_dti": 0.08571057788287698,
+   "holdout_std": 0.016472393999257127,
+   "sgmc_dti": 0.24387472111040193,
+   "sgmc_coverage": 0.3767150092074754,
+   "is_ours": false
+  },
+  {
+   "id": "calib_8GEMSDOE_Hedge-v2_submission",
+   "file": "8GEMSDOE_Hedge-v2_submission.tif",
+   "official_score": 0.1563,
+   "emitted_px": 227507,
+   "provenance": "calibration raster copied unchanged from the owner siblings",
+   "holdout_dti": 0.2815858489104247,
+   "holdout_std": 0.050884397895233156,
+   "sgmc_dti": 0.08398638877757426,
+   "sgmc_coverage": 0.1314850331701064,
+   "is_ours": false
+  },
+  {
+   "id": "calib_gems10-h25-ctx-ridge-20260927T2329477041",
+   "file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "official_score": 0.128,
+   "emitted_px": 174232,
+   "provenance": "calibration raster copied unchanged from the owner siblings",
+   "holdout_dti": 0.15725162187003094,
+   "holdout_std": 0.021658675392537293,
+   "sgmc_dti": 0.07234821430417547,
+   "sgmc_coverage": 0.10039252489771319,
+   "is_ours": false
+  },
+  {
+   "id": "calib_gems10-h28-dotted-ridge-20260928T0202562",
+   "file": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+   "official_score": 0.1839,
+   "emitted_px": 69281,
+   "provenance": "calibration raster copied unchanged from the owner siblings",
+   "holdout_dti": 0.20575050158771327,
+   "holdout_std": 0.021328808199717005,
+   "sgmc_dti": 0.08155937740064059,
+   "sgmc_coverage": 0.08504248889440791,
+   "is_ours": false
+  },
+  {
+   "id": "calib_gemsdoe-ens12-adopted-7f00890a",
+   "file": "gemsdoe-ens12-adopted-7f00890a.tif",
+   "official_score": 0.1563,
+   "emitted_px": 172974,
+   "provenance": "calibration raster copied unchanged from the owner siblings",
+   "holdout_dti": 0.0878577326013863,
+   "holdout_std": 0.02045215441557773,
+   "sgmc_dti": 0.0951340623004479,
+   "sgmc_coverage": 0.1314850331701064,
+   "is_ours": false
+  },
+  {
+   "id": "calib_gemsdoe9-PLACEHOLDER-2314b599",
+   "file": "gemsdoe9-PLACEHOLDER-2314b599.tif",
+   "official_score": 0.0107,
+   "emitted_px": 343816,
+   "provenance": "calibration raster copied unchanged from the owner siblings",
+   "holdout_dti": 0.016868602443581574,
+   "holdout_std": 0.007141542542063905,
+   "sgmc_dti": 0.03245863031251086,
+   "sgmc_coverage": 0.04182960650365244,
+   "is_ours": false
+  },
+  {
+   "id": "scored_d15_scored",
+   "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "official_score": 0.2477,
+   "emitted_px": 60069,
+   "provenance": "owner-mirrored raster labelled 0.2477; user/owner-reported DTI claim is unverified, and no organizer leaderboard page or receipt was accessed",
+   "holdout_dti": 0.09449039902261719,
+   "holdout_std": 0.023945340576168043,
+   "sgmc_dti": 0.09495194867945503,
+   "sgmc_coverage": 0.0959889264249451,
+   "is_ours": false
+  },
+  {
+   "id": "scored_gems27_tgc_v2_d15",
+   "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "official_score": 0.2449,
+   "emitted_px": 61328,
+   "provenance": "owner-supplied scored-artifact mirror (GEMSDOE27 primary candidate manifest, generated_utc 2026-10-03T00:32:37Z); UNSCORED on the leaderboard; added 2026-10-04 because scripts/run_pipeline.py required it and it was absent from this manifest, which made the documented reproduce command abort (IR-32-MANIFEST-01)",
+   "holdout_dti": 0.09411710858500714,
+   "holdout_std": 0.023670128027790584,
+   "sgmc_dti": 0.09589272130625012,
+   "sgmc_coverage": 0.09735731908767936,
+   "is_ours": false
+  },
+  {
+   "id": "scored_h16_1",
+   "file": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+   "official_score": 0.1855,
+   "emitted_px": 123939,
+   "provenance": "owner-reported 0.1855",
+   "holdout_dti": 0.06897166352513033,
+   "holdout_std": 0.019411890797551908,
+   "sgmc_dti": 0.10577236803417406,
+   "sgmc_coverage": 0.1289927346784849,
+   "is_ours": false
+  },
+  {
+   "id": "scored_h19_4",
+   "file": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+   "official_score": 0.1894,
+   "emitted_px": 123779,
+   "provenance": "owner-reported 0.1894",
+   "holdout_dti": 0.0701314180898456,
+   "holdout_std": 0.019474349132740407,
+   "sgmc_dti": 0.09953929714270507,
+   "sgmc_coverage": 0.12124360388386286,
+   "is_ours": false
+  },
+  {
+   "id": "scored_h19_5",
+   "file": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+   "official_score": 0.1922,
+   "emitted_px": 121131,
+   "provenance": "owner-reported 0.1922",
+   "holdout_dti": 0.06970271882047722,
+   "holdout_std": 0.018872021752573107,
+   "sgmc_dti": 0.0934803701425907,
+   "sgmc_coverage": 0.11297114097681074,
+   "is_ours": false
+  }
+ ],
+ "candidates": [
+  {
+   "id": "gems42-xscale-worm-persistence-20261006T000541Z",
+   "file": "gems42-xscale-worm-persistence-20261006T000541Z-nan.tif",
+   "official_score": null,
+   "emitted_px": 60069,
+   "holdout_dti": 0.04074727278089951,
+   "holdout_std": 0.01805895865670491,
+   "sgmc_dti": 0.08562118931004438,
+   "sgmc_coverage": 0.08658348081897117,
+   "is_ours": true,
+   "provenance": "built by this repository; not yet submitted"
+  }
+ ]
+}
