@@ -1,0 +1,43 @@
+{
+  "hypothesis_id": "WPH-01",
+  "method_version": "1.0-preregistered",
+  "status": "not_run_data_blocked",
+  "continuation_heights_m": [0, 100, 200, 400, 800, 1600, 3200],
+  "smoothing_sigmas_pixels": [0.5, 1, 2, 4, 8, 16, 32],
+  "worm_match_radius_pixels": 2,
+  "topology_match_radius_pixels": 2,
+  "topology": {
+    "dimension": 0,
+    "filtration": "superlevel",
+    "adjacency": "4-neighbor pixel graph",
+    "lifetime": "birth minus merge/death level",
+    "essential_component": "one_omitted_per_connected_valid_mask_component"
+  },
+  "fusion": "equal_weight_mean_of_per_layer_worm_survival_times_scale_space_topology",
+  "normalization": "per_layer_positive_product_values_scaled_by_within_footprint_99_5th_percentile; final_clip_0_1",
+  "magnetic_transform": "use_documented_RTP_band; do_not_assume_pseudogravity_parameters",
+  "metric": {
+    "name": "distance_weighted_tversky_proxy",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "support_m": 300
+  },
+  "holdout": {
+    "spatial_blocks": 4,
+    "edge_guard_m": 300,
+    "matched_emitted_mass": true,
+    "sensitivity_area_fractions": [0.005, 0.01, 0.02],
+    "promotion": "positive_paired_mean_and_at_least_3_of_4_folds_and_95_percent_block_bootstrap_interval_excludes_zero"
+  },
+  "distinctness_policy": {
+    "max_absolute_pearson": 0.9,
+    "max_absolute_spearman": 0.9,
+    "all_prior_raw_artifacts_required": true
+  },
+  "created_utc": "2026-10-05",
+  "notes": [
+    "Scale choices are preregistered starting values, not literature-optimal parameters.",
+    "No data, holdout, correlation or TIFF format run has been completed in this checkout.",
+    "RTP-field worming is not claimed to be a full pseudogravity implementation."
+  ]
+}

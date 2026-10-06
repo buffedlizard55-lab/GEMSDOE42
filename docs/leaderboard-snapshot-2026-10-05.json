@@ -1,0 +1,15 @@
+{
+  "snapshot_date_utc": "2026-10-05",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "snapshot_type": "manually retrieved public page; not a live feed",
+  "automated_monitoring": false,
+  "rows": [
+    {"rank": 1, "participant": "nchuzhoy", "best_public_dw_tversky": 0.3262},
+    {"rank": 2, "participant": "kinghorton42", "best_public_dw_tversky": 0.3222},
+    {"rank": 3, "participant": "alexoktaba", "best_public_dw_tversky": 0.3220},
+    {"rank": 4, "participant": "DARD", "best_public_dw_tversky": 0.3195},
+    {"rank": 5, "participant": "joeyfezster", "best_public_dw_tversky": 0.3163},
+    {"rank": 13, "participant": "extradr19", "best_public_dw_tversky": 0.2778}
+  ],
+  "caveat": "Public scores are time-sensitive and are not private-set scores or final prize results. The public table does not identify submission filenames, so no listed score is attributed to a local raster without a matching organizer receipt."
+}

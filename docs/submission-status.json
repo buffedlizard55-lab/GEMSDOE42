@@ -1,0 +1,33 @@
+{
+  "ready": true,
+  "candidate_id": "gems42-xscale-worm-persistence-20261006T000541Z",
+  "filename": "gems42-xscale-worm-persistence-20261006T000541Z-nan.tif",
+  "download_path": "downloads/gems42-xscale-worm-persistence-20261006T000541Z-nan.tif",
+  "sha256": "7de8f533e13a26c25aadd74852b920a6ef759d5beab5d453ba25cb2d9212b9c9",
+  "status": "validated_format_unique_emission_budget_from_leaderboard_fitted_model",
+  "checked_utc": "2026-10-06",
+  "reason": "Format gate passes 11/11 checks, re-audited from disk by scripts/audit_shipped.py. Uniqueness: max |Pearson| 0.0248 against 12 restored priors. Emission budget 60,069 px chosen from scripts/fit_emission_model.py (11 known score/size pairs, R^2 0.751), not from the holdout sweep.",
+  "holdout_passed": null,
+  "holdout_receipt": {
+    "note": "Deliberately null rather than true. Both holdout instruments were calibrated against 11 priors with known public scores and neither predicts the live board: catalogue holdout Spearman +0.087 (p=0.80), off-catalogue SGMC +0.305 (p=0.361). Passing a holdout is therefore not evidence of a good score, and claiming one would be misleading. See registry/holdout_calibration.json and registry/irregularities.json IRR-01.",
+    "holdout_dti": 0.04074727278089951,
+    "sgmc_off_catalogue_dti": 0.08562118931004438,
+    "spearman_holdout_vs_official": 0.086560589039859,
+    "spearman_sgmc_vs_official": 0.3049
+  },
+  "format_receipt": {
+    "audit": "scripts/audit_shipped.py",
+    "checks_passed": 11,
+    "checks_total": 11,
+    "values_min": 0.0,
+    "values_max": 1.0,
+    "emitted_px": 60069,
+    "on_catalogue_px": 0
+  },
+  "correlation_receipt": {
+    "max_abs_pearson": 0.02479893833833602,
+    "max_abs_spearman": 0.02479893833833479,
+    "n_priors_compared": 12
+  },
+  "weekly_submission_slot_used": false
+}

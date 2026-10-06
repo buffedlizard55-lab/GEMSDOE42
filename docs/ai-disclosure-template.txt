@@ -1,0 +1,5 @@
+Draft only — the participant must edit this to accurately describe their actual use:
+
+“Generative AI tools assisted with repository review, literature/source organization, and code drafting/review. The entrant reviewed and verified the data provenance, analysis, code, output raster and claims; any assistance used for the final narrative and submission materials is described here.”
+
+The DOE/NLR rules require disclosure of extent and manner of generative-AI use in the narrative. Do not claim manual review or verification that did not happen, and disclose other material uses not covered by this draft.

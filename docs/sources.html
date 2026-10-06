@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditable source register for GEMSDOE42 with official evidence, access status and manual review links.">
+  <title>Sources · GEMSDOE42</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">G42</span><span>GEMSDOE42</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Overview</a><a href="executive-summary.html">Submit</a><a href="hypotheses.html">Hypotheses</a><a aria-current="page" href="sources.html">Sources</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <p class="eyebrow">Evidence register · checked 2026-10-05 UTC</p>
+    <h1>Sources and data provenance</h1>
+    <p class="lead">“Verified” means the linked page or metadata was read in this review. It does not mean that data bytes were downloaded, rasterized, spatially aligned or independently validated. Each row separates what the source establishes from what remains unchecked.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th>What the source establishes</th><th>Access / evidence status</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page</a></td><td>Task is mapping faults indicative of geothermal resources; describes GeoDAWN features, incomplete/misaligned known labels, DTI (α=0.2, β=0.8, 300 m support), CRS/resolution, and single-band float32 submission requirements.</td><td>Official page read 2026-10-05. Full submission metadata still must come from the official sample raster.</td></tr>
+          <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a></td><td>The public board's displayed participant ranks/scores at the time of access. It does not map a score to a local TIFF hash.</td><td>Official live page read 2026-10-05; snapshot is in <a href="research/score-forensics.html">score forensics</a>. No automated monitoring is implemented.</td></tr>
+          <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData data page</a></td><td>Official download location for `training_features.tif`, labels, sample submission and the DEM link file.</td><td>Redirects to DrivenData login when fetched without a participant session. No access token/session is present here; not bypassed.</td></tr>
+          <tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">DOE/NLR Official Rules (September 2026)</a></td><td>Requires registration for training data; allows up to three feedback submissions per week and requires one final selection; describes public/private scoring and Phase 2 label expansion; requires disclosure of generative-AI use in the narrative.</td><td>Official PDF read 2026-10-05. Re-check the PDF and competition page for updates before final submission.</td></tr>
+          <tr><td><a href="https://www.drivendata.org/termsofuse/">DrivenData Terms of Use</a> · <a href="https://www.drivendata.org/robots.txt">robots.txt</a></td><td>Terms prohibit use of a robot/spider/automatic process for access, including monitoring/copying, without prior written consent. Robots file also disallows specific paths.</td><td>Official pages read 2026-10-05. No automated leaderboard scraper or DrivenData submission bot will be built absent written consent.</td></tr>
+          <tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference solution</a></td><td>Official baseline code repository for participants.</td><td>Public GitHub repository inspected 2026-10-05. It is a baseline, not competition ground truth or evidence that our code/data are correct.</td></tr>
+          <tr><td><a href="https://doi.org/10.5066/P93LGLVQ">USGS GeoDAWN release</a> · <a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">ScienceBase item</a></td><td>USGS/DOE airborne magnetic and radiometric survey over parts of Nevada and California. USGS release describes survey coverage, acquisition/processing, magnetic/radiometric grids, lidar-related survey context, and marks the work CC0.</td><td>Official USGS/ScienceBase pages read 2026-10-05. This external source is not a substitute for the competition's aligned raster; no binary grid was downloaded here.</td></tr>
+          <tr><td><a href="https://doi.org/10.1046/j.1365-246x.1999.00788.x">Hornby, Boschetti &amp; Horowitz (1999)</a> · <a href="https://pangea.stanford.edu/ERE/pdf/IGAstandard/SGW/2018/Horowitz.pdf">Horowitz (2018) explanatory paper</a></td><td>Scientific foundation for wavelet/potential-field multiscale edge analysis. The later explanation describes upward continuation and horizontal-gradient maxima as “worms” and discusses pseudogravity for magnetic data and interpretation non-uniqueness.</td><td>Scientific sources read 2026-10-05. The proposed implementation must identify whether it is an exact pseudogravity workflow or an RTP-field variant; no unverified magnetization assumptions are silently inserted.</td></tr>
+          <tr><td><a href="https://jmlr.csail.mit.edu/papers/v18/16-337.html">Adams et al. (2017), Persistence Images</a></td><td>Persistent homology encodes appearance/disappearance of topological features over a filtration; persistence diagrams/images provide multiscale summaries. It is general methodology, not evidence of fault detection.</td><td>Peer-reviewed JMLR paper read by title/abstract and methods summary 2026-10-05. Proposed pixel map uses 0D superlevel lifetimes; geological usefulness remains untested.</td></tr>
+          <tr><td><a href="https://gdr.openei.org/submissions/1391">Geothermal Data Repository (GDR) 1391: INGENIOUS</a></td><td>Public dataset page, CC BY 4.0 license, DOI 10.15121/1881483; describes geophysical, temperature, geochemistry, seismicity, paleogeothermal and fault resources. Lists downloadable well/spring temperature and chemistry archive.</td><td>Official dataset page read 2026-10-05; its page lists the 19.85 MB well/spring archive. Archive bytes and the exact chemistry fields have not been downloaded or inspected.</td></tr>
+          <tr><td><a href="https://data.usgs.gov/datacatalog/data/USGS:a3d298d7-3b4f-45aa-92c1-72dedb292af2">USGS GeMS/SGMC data catalog</a> · <a href="https://mrdata.usgs.gov/geology/state/state.php?state=NV">USGS Nevada SGMC page</a></td><td>Public USGS geologic map compilation / GeMS data releases and Nevada map download/service links.</td><td>Official catalog page and USGS MRData listing verified 2026-10-05. Geologic-scale suitability, feature schemas, exact overlap and the data bytes are not yet checked.</td></tr>
+          <tr><td><a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS FDSN Event Web Service / ComCat</a> · <a href="https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&amp;starttime=2020-05-15T00:00:00&amp;endtime=2020-05-16T00:00:00&amp;minmagnitude=5&amp;minlatitude=35&amp;maxlatitude=42&amp;minlongitude=-120&amp;maxlongitude=-115">reproducible example query</a></td><td>Official API documentation describes event, location, time and product queries. The example request returned two reviewed Nevada-region events, including the May 15, 2020 M6.5 Monte Cristo Range event.</td><td>API endpoint and one query verified 2026-10-05. The broad bounding box is not an exact competition footprint, and two events do not validate a useful lineament detector.</td></tr>
+          <tr><td><a href="https://data.usgs.gov/datacatalog/data/USGS:77ae0551-c61e-4979-aedd-d797abdcde0e">USGS 3DEP 1 m DEM collection</a> · <a href="https://apps.nationalmap.gov/downloader/">The National Map Downloader</a></td><td>Official product catalog describes 1 m DEM availability and public-domain status; coverage is not uniform nationally.</td><td>Source/product is obtainable through official pages. Tile coverage within the exact GEMS footprint and the competition's DEM URL list have not been verified here.</td></tr>
+          <tr><td><a href="https://www.waterqualitydata.us/">USGS/EPA Water Quality Portal</a></td><td>Official portal integrates publicly available discrete water-quality data from USGS NWIS, EPA WQX and other agencies. Its page notes WQX 3.0 profiles for newer USGS data.</td><td>Portal page reachable 2026-10-05; no spatially clipped chemistry export or sample-density audit was performed. Older data interface limitations must be respected.</td></tr>
+          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 owner page</a> · <a href="prior-results.csv">User-supplied prior-result register</a></td><td>Evidence of what another project page claims or labels for its own candidate, and a record of values transcribed from the user prompt.</td><td>Not an official contest record. The H33-2-B2 page labels the raster unscored; the historic-score register is explicitly unverified except where independently described above.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>Data provenance rules</h2>
+    <ul>
+      <li>Keep original source, URL/DOI, license, retrieval time, checksum, CRS, transform, resolution, shape, band description and nodata semantics with each data object.</li>
+      <li>Do not call a layer “officially aligned” until its metadata and pixels have been checked against the competition sample grid.</li>
+      <li>Keep competition data and generated rasters outside Git. Do not mirror access-controlled contest files or redistribute third-party data without checking license terms.</li>
+      <li>Every future leaderboard snapshot must state its access timestamp, and must be retrieved in a way consistent with the platform Terms of Use.</li>
+    </ul>
+  </main>
+  <footer class="site-footer"><span>Source access checked 2026-10-05 · binary data not implied</span><a href="index.html">Overview</a></footer>
+</body>
+</html>
