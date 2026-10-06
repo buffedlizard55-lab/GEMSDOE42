@@ -30,8 +30,8 @@
   {
    "what": "ORGANISER ANSWER - known USGS/INGENIOUS faults are masked out of scoring",
    "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
-   "verified": "yes - post 2, user chrisk-dd, DrivenData Staff, Sep 16",
-   "note": "Verbatim: 'Pixels corresponding to known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards penalty terms.' and 'Re-evaluation will also mask/exclude the existing USGS/INGENIOUS faults.' Consequence: emitting on a known fault is neutral - no credit, no penalty - but it consumes emission budget. Implemented as the `known` mask in gems42.metric."
+   "verified": "yes - posts 2 and 4, user chrisk-dd, DrivenData Staff",
+   "note": "Verbatim, post 2 (Sep 16): 'Pixels corresponding to known USGS/INGENIOUS faults are masked / excluded from evaluation, so they do not count towards penalty terms.' and 'Re-evaluation will also mask/exclude the existing USGS/INGENIOUS faults.'  Verbatim, post 4 (Sep 21): 'The mask is indeed pixel-exact - it is identical to the provided set of training fault labels.'  The same post notes that new-fault ground truth may lie within 300 m of a known trace and that finding those is 'one outcome we are aiming for'.  Consequence: emitting on a known fault is neutral - no credit, no penalty - but it consumes emission budget, and predictions near a known trace ARE fully penalised.  Implemented as the pixel-exact `known` mask in gems42.metric and as exclude=labels in the emission selector."
   },
   {
    "what": "ORGANISER ANSWER - test-set construction will not be disclosed",

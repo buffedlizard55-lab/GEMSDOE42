@@ -78,6 +78,13 @@
    "finding": "labels.tif and existing_faults.tif are byte-identical.",
    "evidence": "Both entries in registry/data_manifest.json carry sha256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093 and 425,830 bytes.",
    "action": "Only labels.tif is loaded. existing_faults.tif is restored for completeness and never read."
+  },
+  {
+   "id": "IRR-12",
+   "severity": "low",
+   "finding": "The official worked scoring example cannot be reproduced pixel-for-pixel from the page text, because its geometry is published only as an image.",
+   "evidence": "The page text states the result (TP_w = 3.00, FP_w = 1.89, FN_w = 2.00 -> TI = 0.60) and that 'the ground truth is a single vertical line', but not the line length or the prediction geometry. A brute-force search over vertical-line truths (|G| = 4..6) and vertical prediction runs found no configuration reproducing FP_w = 1.8856; the closest gives TP_w = 3.3333, FP_w = 1.6667, FN_w = 1.6667.",
+   "action": "The metric is pinned three other ways instead: (a) the published arithmetic 3.00/(3.00+0.2*1.89+0.8*2.00) = 0.6027 -> 0.60, checked in tests/test_core.py; (b) the structural identity TP_w + FN_w == |G|, which holds term-by-term by construction and is asserted on random cases - it is what makes the published FN_w = 2.00 with |G| = 5 imply TP_w = 3.00; (c) DTI == 1/(0.2/P + 0.8/R), the distance-weighted F2 identity that follows from (b). Plus a loop-for-loop brute-force reimplementation. The gap is recorded rather than papered over by asserting a reconstruction."
   }
  ]
 }

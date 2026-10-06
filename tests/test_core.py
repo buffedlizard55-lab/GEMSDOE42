@@ -33,11 +33,49 @@ def test_metric_constants_match_problem_description():
 
 def test_scoring_example_from_problem_description():
     """The worked example on the official page: TP_w=3.00, FP_w=1.89, FN_w=2.00 -> TI = 0.60."""
-    # Truth: a single vertical line of 4 pixels.  The page's diagram gives |G| = 4 with
-    # TP_w + FN_w = |G| ... the published arithmetic is 3.00 / (3.00 + 0.2*1.89 + 0.8*2.00) = 0.60.
+    # The page's diagram is an image, so the exact pixel geometry is not recoverable from the
+    # text; what IS recoverable is the arithmetic, which is checked here, plus the structural
+    # identity TP_w + FN_w == |G| (below), which pins the same implementation far more tightly.
     tp, fp, fn = 3.00, 1.89, 2.00
     got = tp / (tp + 0.2 * fp + 0.8 * fn)
     assert round(got, 2) == 0.60
+
+
+def test_tp_plus_fn_equals_truth_count_exactly():
+    """TP_w + FN_w == |G| for any prediction, by construction of the published formulas.
+
+    FN_w = sum_g (1 - max_x p(x) k(d)) and TP_w = sum_g max_x p(x) k(d), so they partition |G|
+    term by term.  This is the strongest available check that the two sums agree on which truth
+    pixel owns which prediction, and it is the identity that makes the published example's
+    FN_w = 2.00 with |G| = 5 imply TP_w = 3.00.  A brute-force search over vertical-line truths
+    and vertical-run predictions found no counterexample.
+    """
+    rng = np.random.default_rng(11)
+    for _ in range(8):
+        truth = rng.random((13, 15)) > 0.88
+        pred = np.where(rng.random((13, 15)) > 0.45, rng.random((13, 15)), 0.0)
+        r = dti_exact(pred, truth)
+        n = int(truth.sum())
+        assert r["tp"] + r["fn"] == pytest.approx(float(n), abs=1e-9)
+
+
+def test_dti_is_a_distance_weighted_f2():
+    """Because FN_w = |G| - TP_w, DTI collapses to 1 / (0.2/P + 0.8/R).
+
+    Worth pinning because it is the fact that drives every emission-size decision in this repo:
+    with alpha = 0.2 the metric discounts false positives fourfold, so recall dominates precision
+    whenever P > 0.25 R.
+    """
+    rng = np.random.default_rng(5)
+    truth = rng.random((12, 14)) > 0.87
+    pred = np.where(rng.random((12, 14)) > 0.5, rng.random((12, 14)), 0.0)
+    r = dti_exact(pred, truth)
+    tp, fp, fn = r["tp"], r["fp"], r["fn"]
+    if tp <= 0:
+        return
+    P = tp / (tp + fp)
+    R = tp / (tp + fn)
+    assert r["dti"] == pytest.approx(1.0 / (0.2 / P + 0.8 / R), abs=1e-9)
 
 
 def test_dti_exact_matches_bruteforce_random():
